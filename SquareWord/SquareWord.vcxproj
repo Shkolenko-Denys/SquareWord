@@ -121,11 +121,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameForm.cpp" />
+    <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="Gamer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="GameMap.h" />
+    <ClInclude Include="Gamer.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GameForm.resx">
