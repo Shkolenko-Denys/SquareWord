@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GameMap.h"
+
 namespace SquareWord {
 
 	using namespace System;
@@ -149,6 +151,9 @@ namespace SquareWord {
 		}
 #pragma endregion
 	private: System::Media::SoundPlayer^ soundClick;
+
+	private: void StartGame();
+	private: void CreateGameGrid(int);
 	
 	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void ≥–≥‚ÂÌ¸ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);

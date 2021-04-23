@@ -37,7 +37,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\..\..\..\Downloads\click.mp3">
+    <Media Include="..\Resources\click.mp3">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>
