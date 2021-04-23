@@ -13,6 +13,11 @@ void main(array<String^>^ args)
 	Application::Run(% form);
 }
 
+System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
 System::Void SquareWord::GameForm::≥–≥‚ÂÌ¸ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	return System::Void();

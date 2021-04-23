@@ -36,4 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\Downloads\click.mp3">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

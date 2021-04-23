@@ -139,6 +139,7 @@ namespace SquareWord {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"GameForm";
 			this->Text = L"SquareWord";
+			this->Load += gcnew System::EventHandler(this, &GameForm::GameForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->EndInit();
@@ -147,6 +148,9 @@ namespace SquareWord {
 
 		}
 #pragma endregion
+	private: System::Media::SoundPlayer^ soundClick;
+	
+	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void ³Ğ³âåíüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void ³²Ğ³âåíüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void ³²²Ğ³âåíüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
