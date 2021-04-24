@@ -18,15 +18,17 @@ bool sound;
 
 System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	// Initializing sounds
 	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.mp3");
 	sound = true;
+
 	StartGame();
 }
 
 void SquareWord::GameForm::StartGame()
 {
-	CreateGameGrid(map.get_size());
-	SetStartGameGrid(map.get_size());
+	CreateGameGrid(map.get_size()); // creating a playing field
+	SetStartGameGrid(map.get_size()); // set starting parameters
 }
 
 void SquareWord::GameForm::CreateGameGrid(int size)
