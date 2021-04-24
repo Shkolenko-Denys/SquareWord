@@ -101,7 +101,7 @@ namespace SquareWord {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1021, 38);
+			this->menuStrip1->Size = System::Drawing::Size(963, 38);
 			this->menuStrip1->TabIndex = 2;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -136,7 +136,7 @@ namespace SquareWord {
 			this->dataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView->Location = System::Drawing::Point(22, 64);
 			this->dataGridView->Name = L"dataGridView";
-			this->dataGridView->Size = System::Drawing::Size(527, 346);
+			this->dataGridView->Size = System::Drawing::Size(476, 346);
 			this->dataGridView->TabIndex = 3;
 			this->dataGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &GameForm::dataGridView_CellContentClick);
 			// 
@@ -204,7 +204,7 @@ namespace SquareWord {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1021, 490);
+			this->ClientSize = System::Drawing::Size(963, 443);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -232,6 +232,7 @@ namespace SquareWord {
 	private: void StartGame();
 	private: void CreateGameGrid(int);
 	private: void SetStartGameGrid(int);
+	private: void SetPosition(coord, char);
 	
 	// Game events
 	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
