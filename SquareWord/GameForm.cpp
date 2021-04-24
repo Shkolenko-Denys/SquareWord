@@ -26,6 +26,7 @@ System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System:
 void SquareWord::GameForm::StartGame()
 {
 	CreateGameGrid(map.get_size());
+	SetGameGrid(map.get_size());
 }
 
 void SquareWord::GameForm::CreateGameGrid(int size)
@@ -38,7 +39,8 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 	dataGridView->ColumnHeadersDefaultCellStyle->Font = font;
 	dataGridView->RowHeadersDefaultCellStyle->Font = font;
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++)
+	{
 		DataGridViewButtonColumn^ column = gcnew DataGridViewButtonColumn();
 		column->HeaderCell->Value = Convert::ToString(i + 1);
 		column->Name = "column" + i;
@@ -47,10 +49,66 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 		dataGridView->Columns->Add(column);
 	}
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++)
+	{
 		dataGridView->Rows->Add();
 		dataGridView->Rows[i]->HeaderCell->Value = Convert::ToString(i + 1);
 		dataGridView->Rows[i]->Height = 50;
+	}
+}
+
+void SquareWord::GameForm::SetGameGrid(int size)
+{
+	if (size == 5)
+	{
+		dataGridView->Rows[0]->Cells[0]->Value = "Ñ";
+		dataGridView->Rows[0]->Cells[1]->Value = "Ë";
+		dataGridView->Rows[0]->Cells[2]->Value = "Å";
+		dataGridView->Rows[0]->Cells[3]->Value = "Ç";
+		dataGridView->Rows[0]->Cells[4]->Value = "À";
+
+		dataGridView->Rows[2]->Cells[2]->Value = "Ë";
+		dataGridView->Rows[2]->Cells[3]->Value = "Å";
+		dataGridView->Rows[2]->Cells[4]->Value = "Ñ";
+	}
+	else if (size == 6)
+	{
+		dataGridView->Rows[0]->Cells[0]->Value = "Ã";
+		dataGridView->Rows[0]->Cells[1]->Value = "Ë";
+		dataGridView->Rows[0]->Cells[2]->Value = "Î";
+		dataGridView->Rows[0]->Cells[3]->Value = "Á";
+		dataGridView->Rows[0]->Cells[4]->Value = "Ó";
+		dataGridView->Rows[0]->Cells[5]->Value = "Ñ";
+
+		dataGridView->Rows[2]->Cells[2]->Value = "Ë";
+		dataGridView->Rows[2]->Cells[3]->Value = "Ó";
+		dataGridView->Rows[2]->Cells[4]->Value = "Ã";
+
+		dataGridView->Rows[4]->Cells[3]->Value = "Ã";
+		dataGridView->Rows[4]->Cells[4]->Value = "Î";
+		dataGridView->Rows[4]->Cells[5]->Value = "Ë";
+	}
+	else if (size == 7)
+	{
+		dataGridView->Rows[0]->Cells[0]->Value = "Ð";
+		dataGridView->Rows[0]->Cells[1]->Value = "È";
+		dataGridView->Rows[0]->Cells[2]->Value = "Ñ";
+		dataGridView->Rows[0]->Cells[3]->Value = "Ó";
+		dataGridView->Rows[0]->Cells[4]->Value = "Í";
+		dataGridView->Rows[0]->Cells[5]->Value = "Î";
+		dataGridView->Rows[0]->Cells[6]->Value = "Ê";
+
+		dataGridView->Rows[2]->Cells[3]->Value = "Ñ";
+		dataGridView->Rows[2]->Cells[4]->Value = "Ó";
+		dataGridView->Rows[2]->Cells[5]->Value = "Ê";
+
+		dataGridView->Rows[4]->Cells[3]->Value = "Í";
+		dataGridView->Rows[4]->Cells[4]->Value = "Î";
+		dataGridView->Rows[4]->Cells[5]->Value = "Ñ";
+
+		dataGridView->Rows[6]->Cells[4]->Value = "Ð";
+		dataGridView->Rows[6]->Cells[5]->Value = "È";
+		dataGridView->Rows[6]->Cells[6]->Value = "Ñ";
 	}
 }
 

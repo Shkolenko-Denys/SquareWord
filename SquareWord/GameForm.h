@@ -2,6 +2,8 @@
 
 #include "GameMap.h"
 
+#include <string>
+
 namespace SquareWord {
 
 	using namespace System;
@@ -154,6 +156,7 @@ namespace SquareWord {
 
 	private: void StartGame();
 	private: void CreateGameGrid(int);
+	private: void SetGameGrid(int);
 	
 	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void ≥–≥‚ÂÌ¸ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
