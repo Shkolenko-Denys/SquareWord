@@ -13,6 +13,109 @@ void main(array<String^>^ args)
 	Application::Run(% form);
 }
 
+GameMap map(5);
+bool sound;
+
+System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
+{
+	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.mp3");
+	sound = true;
+	StartGame();
+}
+
+void SquareWord::GameForm::StartGame()
+{
+	CreateGameGrid(map.get_size());
+	SetStartGameGrid(map.get_size());
+}
+
+void SquareWord::GameForm::CreateGameGrid(int size)
+{
+	// clear grid
+	dataGridView->Rows->Clear();
+	dataGridView->Columns->Clear();
+
+	// set the style
+	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 14);
+	dataGridView->DefaultCellStyle->Font = font;
+	dataGridView->ColumnHeadersDefaultCellStyle->Font = font;
+	dataGridView->RowHeadersDefaultCellStyle->Font = font;
+
+	// create columns
+	for (int i = 0; i < size; i++)
+	{
+		DataGridViewButtonColumn^ column = gcnew DataGridViewButtonColumn();
+		column->HeaderCell->Value = Convert::ToString(i + 1);
+		column->Name = "column" + i;
+		column->Width = 50;
+
+		dataGridView->Columns->Add(column);
+	}
+
+	// create rows
+	for (int i = 0; i < size; i++)
+	{
+		dataGridView->Rows->Add();
+		dataGridView->Rows[i]->HeaderCell->Value = Convert::ToString(i + 1);
+		dataGridView->Rows[i]->Height = 50;
+	}
+}
+
+void SquareWord::GameForm::SetStartGameGrid(int size)
+{
+	if (size == 5)
+	{
+		dataGridView->Rows[0]->Cells[0]->Value = "С";
+		dataGridView->Rows[0]->Cells[1]->Value = "Л";
+		dataGridView->Rows[0]->Cells[2]->Value = "Е";
+		dataGridView->Rows[0]->Cells[3]->Value = "З";
+		dataGridView->Rows[0]->Cells[4]->Value = "А";
+
+		dataGridView->Rows[2]->Cells[2]->Value = "Л";
+		dataGridView->Rows[2]->Cells[3]->Value = "Е";
+		dataGridView->Rows[2]->Cells[4]->Value = "С";
+	}
+	else if (size == 6)
+	{
+		dataGridView->Rows[0]->Cells[0]->Value = "Г";
+		dataGridView->Rows[0]->Cells[1]->Value = "Л";
+		dataGridView->Rows[0]->Cells[2]->Value = "О";
+		dataGridView->Rows[0]->Cells[3]->Value = "Б";
+		dataGridView->Rows[0]->Cells[4]->Value = "У";
+		dataGridView->Rows[0]->Cells[5]->Value = "С";
+
+		dataGridView->Rows[2]->Cells[2]->Value = "Л";
+		dataGridView->Rows[2]->Cells[3]->Value = "У";
+		dataGridView->Rows[2]->Cells[4]->Value = "Г";
+
+		dataGridView->Rows[4]->Cells[3]->Value = "Г";
+		dataGridView->Rows[4]->Cells[4]->Value = "О";
+		dataGridView->Rows[4]->Cells[5]->Value = "Л";
+	}
+	else if (size == 7)
+	{
+		dataGridView->Rows[0]->Cells[0]->Value = "Р";
+		dataGridView->Rows[0]->Cells[1]->Value = "И";
+		dataGridView->Rows[0]->Cells[2]->Value = "С";
+		dataGridView->Rows[0]->Cells[3]->Value = "У";
+		dataGridView->Rows[0]->Cells[4]->Value = "Н";
+		dataGridView->Rows[0]->Cells[5]->Value = "О";
+		dataGridView->Rows[0]->Cells[6]->Value = "К";
+
+		dataGridView->Rows[2]->Cells[3]->Value = "С";
+		dataGridView->Rows[2]->Cells[4]->Value = "У";
+		dataGridView->Rows[2]->Cells[5]->Value = "К";
+
+		dataGridView->Rows[4]->Cells[3]->Value = "Н";
+		dataGridView->Rows[4]->Cells[4]->Value = "О";
+		dataGridView->Rows[4]->Cells[5]->Value = "С";
+
+		dataGridView->Rows[6]->Cells[4]->Value = "Р";
+		dataGridView->Rows[6]->Cells[5]->Value = "И";
+		dataGridView->Rows[6]->Cells[6]->Value = "С";
+	}
+}
+
 System::Void SquareWord::GameForm::іРівеньToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	return System::Void();
@@ -34,6 +137,31 @@ System::Void SquareWord::GameForm::checkBox1_CheckedChanged(System::Object^ send
 }
 
 System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button2_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button3_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button4_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	return System::Void();
 }

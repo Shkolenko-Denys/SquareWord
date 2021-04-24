@@ -121,16 +121,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameForm.cpp" />
+    <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="Gamer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="GameMap.h" />
+    <ClInclude Include="Gamer.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Resources\click.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
