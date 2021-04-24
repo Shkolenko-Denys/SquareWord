@@ -26,19 +26,22 @@ System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System:
 void SquareWord::GameForm::StartGame()
 {
 	CreateGameGrid(map.get_size());
-	SetGameGrid(map.get_size());
+	SetStartGameGrid(map.get_size());
 }
 
 void SquareWord::GameForm::CreateGameGrid(int size)
 {
+	// clear grid
 	dataGridView->Rows->Clear();
 	dataGridView->Columns->Clear();
 
+	// set the style
 	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 14);
 	dataGridView->DefaultCellStyle->Font = font;
 	dataGridView->ColumnHeadersDefaultCellStyle->Font = font;
 	dataGridView->RowHeadersDefaultCellStyle->Font = font;
 
+	// create columns
 	for (int i = 0; i < size; i++)
 	{
 		DataGridViewButtonColumn^ column = gcnew DataGridViewButtonColumn();
@@ -49,6 +52,7 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 		dataGridView->Columns->Add(column);
 	}
 
+	// create rows
 	for (int i = 0; i < size; i++)
 	{
 		dataGridView->Rows->Add();
@@ -57,7 +61,7 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 	}
 }
 
-void SquareWord::GameForm::SetGameGrid(int size)
+void SquareWord::GameForm::SetStartGameGrid(int size)
 {
 	if (size == 5)
 	{
@@ -133,6 +137,31 @@ System::Void SquareWord::GameForm::checkBox1_CheckedChanged(System::Object^ send
 }
 
 System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button2_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button3_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button4_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	return System::Void();
 }
