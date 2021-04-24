@@ -11,4 +11,5 @@
   
 ## Screenshots ##  
   
-![Скриншот 11-04-2021 00 25 33](https://user-images.githubusercontent.com/69078357/114285030-a91f4680-9a5c-11eb-9952-e3a468baca01.png)
+![Скриншот 24-04-2021 12 39 51](https://user-images.githubusercontent.com/69078357/115954521-356c4780-a4fa-11eb-8c86-f2c08da6e640.png)
+
