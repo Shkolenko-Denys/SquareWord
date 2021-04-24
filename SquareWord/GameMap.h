@@ -1,5 +1,9 @@
 #pragma once
 
+struct coord {
+	int x, y;
+};
+
 class GameMap
 {
 private:
