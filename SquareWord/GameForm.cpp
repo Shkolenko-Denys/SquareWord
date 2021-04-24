@@ -161,8 +161,7 @@ System::Void SquareWord::GameForm::checkBox1_CheckedChanged(System::Object^ send
 
 System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
-	if (sound)
-	{
+	if (sound) {
 		soundClick->Play();
 	}
 
