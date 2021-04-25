@@ -12,54 +12,54 @@ GameMap::GameMap(int size)
 
 	if (size == 5)
 	{
-		map[0][0] = '—';
-		map[0][1] = 'À';
-		map[0][2] = '≈';
-		map[0][3] = '«';
-		map[0][4] = '¿';
+		map[0][0] = '√ë';
+		map[0][1] = '√ã';
+		map[0][2] = '√Ö';
+		map[0][3] = '√á';
+		map[0][4] = '√Ä';
 
-		map[2][2] = 'À';
-		map[2][3] = '≈';
-		map[2][4] = '—';
+		map[2][2] = '√ã';
+		map[2][3] = '√Ö';
+		map[2][4] = '√ë';
 	}
 	else if (size == 6)
 	{
-		map[0][0] = '√';
-		map[0][1] = 'À';
-		map[0][2] = 'Œ';
-		map[0][3] = '¡';
-		map[0][4] = '”';
-		map[0][5] = '—';
+		map[0][0] = '√É';
+		map[0][1] = '√ã';
+		map[0][2] = '√é';
+		map[0][3] = '√Å';
+		map[0][4] = '√ì';
+		map[0][5] = '√ë';
 
-		map[2][2] = 'À';
-		map[2][3] = '”';
-		map[2][4] = '√';
+		map[2][2] = '√ã';
+		map[2][3] = '√ì';
+		map[2][4] = '√É';
 
-		map[4][3] = '√';
-		map[4][4] = 'Œ';
-		map[4][5] = 'À';
+		map[4][3] = '√É';
+		map[4][4] = '√é';
+		map[4][5] = '√ã';
 	}
 	else if (size == 7)
 	{
-		map[0][0] = '–';
-		map[0][1] = '»';
-		map[0][2] = '—';
-		map[0][3] = '”';
-		map[0][4] = 'Õ';
-		map[0][5] = 'Œ';
-		map[0][6] = ' ';
+		map[0][0] = '√ê';
+		map[0][1] = '√à';
+		map[0][2] = '√ë';
+		map[0][3] = '√ì';
+		map[0][4] = '√ç';
+		map[0][5] = '√é';
+		map[0][6] = '√ä';
 
-		map[2][3] = '—';
-		map[2][4] = '”';
-		map[2][5] = ' ';
+		map[2][3] = '√ë';
+		map[2][4] = '√ì';
+		map[2][5] = '√ä';
 
-		map[4][3] = 'Õ';
-		map[4][4] = 'Œ';
-		map[4][5] = '—';
+		map[4][3] = '√ç';
+		map[4][4] = '√é';
+		map[4][5] = '√ë';
 
-		map[6][4] = '–';
-		map[6][5] = '»';
-		map[6][6] = '—';
+		map[6][4] = '√ê';
+		map[6][5] = '√à';
+		map[6][6] = '√ë';
 	}
 }
 
@@ -95,6 +95,24 @@ bool GameMap::check(int row, int column, char ch)
 		}
 		if (map[row][j] == ch)
 		{
+			return false;
+		}
+	}
+	// main diagonal check
+	for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
+		if (m1 == row && m2 == column) {
+			continue;
+		}
+		if (map[m1][m2] == ch) {
+			return false;
+		}
+	}
+	// side diagonal check
+	for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
+		if (s1 == row && s2 == column) {
+			continue;
+		}
+		if (map[s1][s2] == ch) {
 			return false;
 		}
 	}
