@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameMap.h"
+#include "StartForm.h"
 
 namespace SquareWord {
 
@@ -37,7 +38,7 @@ namespace SquareWord {
 			}
 		}
 
-	private: System::Windows::Forms::MenuStrip^ menuStrip1;
+
 
 
 
@@ -47,10 +48,13 @@ namespace SquareWord {
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ íàëàøòóâàííÿToolStripMenuItem;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ button7;
+	private: System::Windows::Forms::ToolStripMenuItem^ ïğàâèëàÃğèToolStripMenuItem;
+
+
+
+
 
 
 	protected:
@@ -70,48 +74,18 @@ namespace SquareWord {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
-			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->íàëàøòóâàííÿToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->dataGridView = (gcnew System::Windows::Forms::DataGridView());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->menuStrip1->SuspendLayout();
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ïğàâèëàÃğèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->BeginInit();
+			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// menuStrip1
-			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem,
-					this->íàëàøòóâàííÿToolStripMenuItem
-			});
-			this->menuStrip1->Location = System::Drawing::Point(0, 0);
-			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(848, 33);
-			this->menuStrip1->TabIndex = 2;
-			this->menuStrip1->Text = L"menuStrip1";
-			// 
-			// ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem
-			// 
-			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
-			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Name = L"ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem";
-			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Size = System::Drawing::Size(218, 29);
-			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Text = L"Ïîâåğíóòèñÿ äî ìåíş";
-			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem_Click);
-			// 
-			// íàëàøòóâàííÿToolStripMenuItem
-			// 
-			this->íàëàøòóâàííÿToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
-			this->íàëàøòóâàííÿToolStripMenuItem->Name = L"íàëàøòóâàííÿToolStripMenuItem";
-			this->íàëàøòóâàííÿToolStripMenuItem->Size = System::Drawing::Size(151, 29);
-			this->íàëàøòóâàííÿToolStripMenuItem->Text = L"Íàëàøòóâàííÿ";
-			this->íàëàøòóâàííÿToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::íàëàøòóâàííÿToolStripMenuItem_Click);
 			// 
 			// dataGridView
 			// 
@@ -193,37 +167,39 @@ namespace SquareWord {
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &GameForm::button5_Click);
 			// 
-			// button6
+			// menuStrip1
 			// 
-			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button6->Location = System::Drawing::Point(562, 341);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(75, 75);
-			this->button6->TabIndex = 4;
-			this->button6->Text = L"À";
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &GameForm::button5_Click);
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem,
+					this->ïğàâèëàÃğèToolStripMenuItem
+			});
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(848, 33);
+			this->menuStrip1->TabIndex = 5;
+			this->menuStrip1->Text = L"menuStrip1";
 			// 
-			// button7
+			// ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem
 			// 
-			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button7->Location = System::Drawing::Point(672, 341);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(75, 75);
-			this->button7->TabIndex = 4;
-			this->button7->Text = L"À";
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &GameForm::button5_Click);
+			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
+			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Name = L"ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem";
+			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Size = System::Drawing::Size(218, 29);
+			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Text = L"Ïîâåğíóòèñÿ äî ìåíş";
+			this->ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem_Click);
+			// 
+			// ïğàâèëàÃğèToolStripMenuItem
+			// 
+			this->ïğàâèëàÃğèToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
+			this->ïğàâèëàÃğèToolStripMenuItem->Name = L"ïğàâèëàÃğèToolStripMenuItem";
+			this->ïğàâèëàÃğèToolStripMenuItem->Size = System::Drawing::Size(134, 29);
+			this->ïğàâèëàÃğèToolStripMenuItem->Text = L"Ïğàâèëà ãğè";
+			this->ïğàâèëàÃğèToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::ïğàâèëàÃğèToolStripMenuItem_Click);
 			// 
 			// GameForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(848, 541);
-			this->Controls->Add(this->button7);
-			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -235,9 +211,9 @@ namespace SquareWord {
 			this->Name = L"GameForm";
 			this->Text = L"SquareWord";
 			this->Load += gcnew System::EventHandler(this, &GameForm::GameForm_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -257,14 +233,12 @@ namespace SquareWord {
 	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 	private: System::Void ïîâåğíóòèñÿÄîÌåíşToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void íàëàøòóâàííÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void ïğàâèëàÃğèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

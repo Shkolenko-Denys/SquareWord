@@ -133,12 +133,15 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 
 System::Void SquareWord::GameForm::ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	return System::Void();
+	Close();
 }
 
-System::Void SquareWord::GameForm::íàëàøòóâàííÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::ïðàâèëàÃðèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	return System::Void();
+	if (sound) {
+		soundClick->Play();
+	}
+	MessageBox::Show("Ïðàâèëà", "Ïðàâèëà");
 }
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
@@ -199,14 +202,4 @@ System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System:
 	// Make a move
 	SetPosition(selected_cell, 'À');
 	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = "À";
-}
-
-System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	return System::Void();
-}
-
-System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	return System::Void();
 }

@@ -46,8 +46,8 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     // Create GameForm 
     GameForm^ form = gcnew GameForm();
     form->size = size;
-    form->Show();
-    this->Hide();
+    form->ShowDialog();
+    // this->Hide();
 }
 
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)
