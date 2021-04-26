@@ -15,13 +15,7 @@ namespace SquareWord {
 	public ref class StartForm : public System::Windows::Forms::Form
 	{
 	public:
-		StartForm(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
+		StartForm(void);
 
 	protected:
 		/// <summary>
@@ -170,6 +164,8 @@ namespace SquareWord {
 
 		}
 #pragma endregion
+	private: System::Media::SoundPlayer^ sound;
+
 	private: System::Void ïðîÏðîãðàìóToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void numSize_ValueChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void computerHelp_CheckedChanged(System::Object^ sender, System::EventArgs^ e);

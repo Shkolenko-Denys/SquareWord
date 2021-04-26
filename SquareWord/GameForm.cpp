@@ -1,14 +1,14 @@
-#include "GameForm1.h"
+#include "GameForm.h"
 #include "StartForm.h"
 
 // common data
-GameMap map(5);
+GameMap map;
 coord selected_cell;
 
 // flags
 bool sound;
 
-System::Void SquareWord::GameForm1::GameForm1_Load(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
 	// Initializing sounds
 	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
@@ -17,13 +17,16 @@ System::Void SquareWord::GameForm1::GameForm1_Load(System::Object^ sender, Syste
 	StartGame();
 }
 
-void SquareWord::GameForm1::StartGame()
+void SquareWord::GameForm::StartGame()
 {
+	// Data initialization
+	map.SetMap(size);
+
 	CreateGameGrid(map.get_size()); // creating a playing field
 	SetStartGameGrid(map.get_size()); // set starting parameters
 }
 
-void SquareWord::GameForm1::CreateGameGrid(int size)
+void SquareWord::GameForm::CreateGameGrid(int size)
 {
 	// clear grid
 	dataGridView->Rows->Clear();
@@ -55,7 +58,7 @@ void SquareWord::GameForm1::CreateGameGrid(int size)
 	}
 }
 
-void SquareWord::GameForm1::SetStartGameGrid(int size)
+void SquareWord::GameForm::SetStartGameGrid(int size)
 {
 	if (size == 5)
 	{
@@ -110,36 +113,12 @@ void SquareWord::GameForm1::SetStartGameGrid(int size)
 	}
 }
 
-void SquareWord::GameForm1::SetPosition(coord crd, char ch)
+void SquareWord::GameForm::SetPosition(coord crd, char ch)
 {
 	map.set_position(crd.x, crd.y, ch);
 }
 
-System::Void SquareWord::GameForm1::³Ð³âåíüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	if (sound)
-	{
-		soundClick->Play();
-	}
-}
-
-System::Void SquareWord::GameForm1::³²Ð³âåíüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	if (sound)
-	{
-		soundClick->Play();
-	}
-}
-
-System::Void SquareWord::GameForm1::³²²Ð³âåíüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	if (sound)
-	{
-		soundClick->Play();
-	}
-}
-
-System::Void SquareWord::GameForm1::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
 	if (sound) {
 		soundClick->Play();
@@ -152,7 +131,17 @@ System::Void SquareWord::GameForm1::dataGridView_CellContentClick(System::Object
 	selected_cell.y = e->ColumnIndex;
 }
 
-System::Void SquareWord::GameForm1::button1_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::íàëàøòóâàííÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (sound)
 	{
@@ -164,7 +153,7 @@ System::Void SquareWord::GameForm1::button1_Click(System::Object^ sender, System
 	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = "Ñ";
 }
 
-System::Void SquareWord::GameForm1::button2_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::button2_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (sound)
 	{
@@ -176,7 +165,7 @@ System::Void SquareWord::GameForm1::button2_Click(System::Object^ sender, System
 	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = "Ë";
 }
 
-System::Void SquareWord::GameForm1::button3_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::button3_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (sound)
 	{
@@ -188,7 +177,7 @@ System::Void SquareWord::GameForm1::button3_Click(System::Object^ sender, System
 	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = "Å";
 }
 
-System::Void SquareWord::GameForm1::button4_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::button4_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (sound)
 	{
@@ -200,7 +189,7 @@ System::Void SquareWord::GameForm1::button4_Click(System::Object^ sender, System
 	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = "Ç";
 }
 
-System::Void SquareWord::GameForm1::button5_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (sound)
 	{
@@ -210,4 +199,14 @@ System::Void SquareWord::GameForm1::button5_Click(System::Object^ sender, System
 	// Make a move
 	SetPosition(selected_cell, 'À');
 	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = "À";
+}
+
+System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
+}
+
+System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	return System::Void();
 }

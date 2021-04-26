@@ -120,12 +120,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameForm1.cpp" />
+    <ClCompile Include="GameForm.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="StartForm.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameForm1.h">
+    <ClInclude Include="GameForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="GameMap.h" />
@@ -134,8 +134,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GameForm1.resx">
-      <DependentUpon>GameForm1.h</DependentUpon>
+    <EmbeddedResource Include="GameForm.resx">
+      <DependentUpon>GameForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.h</DependentUpon>

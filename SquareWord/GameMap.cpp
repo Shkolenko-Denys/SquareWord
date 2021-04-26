@@ -1,13 +1,25 @@
 #include "GameMap.h"
 
-GameMap::GameMap(int size)
+GameMap::GameMap()
+{
+	size = 0;
+}
+
+GameMap::~GameMap()
+{
+	for (int i = 0; i < size; ++i) {
+		delete[] map[i];
+	}
+	delete[] map;
+}
+
+void GameMap::SetMap(int size)
 {
 	// create matrix
 	this->size = size;
 	map = new char* [size];
-	for (int i = 0; i < size; ++i)
-	{
-		map[i] = new char [size](); // zeroing
+	for (int i = 0; i < size; ++i) {
+		map[i] = new char[size](); // zeroing
 	}
 
 	if (size == 5)
@@ -63,38 +75,23 @@ GameMap::GameMap(int size)
 	}
 }
 
-GameMap::~GameMap()
-{
-	for (int i = 0; i < size; ++i)
-	{
-		delete[] map[i];
-	}
-	delete[] map;
-}
-
 bool GameMap::check(int row, int column, char ch)
 {
 	// check vertically
-	for (int i = 0; i < size; ++i)
-	{
-		if (i = row)
-		{
+	for (int i = 0; i < size; ++i) {
+		if (i = row) {
 			continue;
 		}
-		if (map[i][column] == ch)
-		{
+		if (map[i][column] == ch) {
 			return false;
 		}
 	}
 	// check horizontally
-	for (int j = 0; j < size; ++j)
-	{
-		if (j = column)
-		{
+	for (int j = 0; j < size; ++j) {
+		if (j = column) {
 			continue;
 		}
-		if (map[row][j] == ch)
-		{
+		if (map[row][j] == ch) {
 			return false;
 		}
 	}

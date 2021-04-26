@@ -1,5 +1,5 @@
 #include "StartForm.h"
-#include "GameForm1.h"
+#include "GameForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -13,27 +13,45 @@ void main(array<String^>^ args) {
     Application::Run(% form);
 }
 
+SquareWord::StartForm::StartForm(void)
+{
+    InitializeComponent();
+
+    // Initializing sounds
+    sound = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
+}
+
 System::Void SquareWord::StartForm::ïðîÏðîãðàìóToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    return System::Void();
+    sound->Play();
+    MessageBox::Show("Ãðà \"SquareWord\".", "²íôîðìàö³ÿ ïðî ïðîãðàìó");
 }
 
 System::Void SquareWord::StartForm::numSize_ValueChanged(System::Object^ sender, System::EventArgs^ e)
 {
-    return System::Void();
+    sound->Play();
 }
 
 System::Void SquareWord::StartForm::computerHelp_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 {
-    return System::Void();
+    sound->Play();
 }
 
 System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    return System::Void();
+    sound->Play();
+    int size;
+    size = Convert::ToInt32(numSize->Value);
+
+    // Create GameForm 
+    GameForm^ form = gcnew GameForm();
+    form->size = size;
+    form->Show();
+    this->Hide();
 }
 
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    return System::Void();
+    sound->Play();
+    Application::Exit();
 }
