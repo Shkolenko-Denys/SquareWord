@@ -10,6 +10,9 @@
 ![Example](https://user-images.githubusercontent.com/69078357/114281310-4d49c300-9a46-11eb-910c-91abf95e7b0d.png)  
   
 ## Screenshots ##  
+    
+![Скриншот 01-05-2021 20 18 25](https://user-images.githubusercontent.com/69078357/116789963-924b9d00-aaba-11eb-803c-2a0a444413d4.png)
   
-![Скриншот 24-04-2021 12 39 51](https://user-images.githubusercontent.com/69078357/115954521-356c4780-a4fa-11eb-8c86-f2c08da6e640.png)
-
+![Скриншот 01-05-2021 20 18 47](https://user-images.githubusercontent.com/69078357/116789966-98da1480-aaba-11eb-9e48-1e3c55dfd70c.png)
+  
+  
