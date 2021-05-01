@@ -18,10 +18,10 @@
     <ClCompile Include="GameForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Gamer.cpp">
+    <ClCompile Include="GameMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameMap.cpp">
+    <ClCompile Include="StartForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +29,10 @@
     <ClInclude Include="GameForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Gamer.h">
+    <ClInclude Include="GameMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameMap.h">
+    <ClInclude Include="StartForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
