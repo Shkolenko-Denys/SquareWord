@@ -37,11 +37,6 @@ namespace SquareWord {
 				delete components;
 			}
 		}
-
-
-
-
-
 	private: System::Windows::Forms::DataGridView^ dataGridView;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
@@ -51,12 +46,8 @@ namespace SquareWord {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïðàâèëàÃðèToolStripMenuItem;
-
-
-
-
-
-
+	private: System::Windows::Forms::Button^ button6;
+	private: System::Windows::Forms::Button^ button7;
 	protected:
 
 	protected:
@@ -83,6 +74,8 @@ namespace SquareWord {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ïðàâèëàÃðèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->button7 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
@@ -103,7 +96,7 @@ namespace SquareWord {
 			this->dataGridView->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::AutoSizeToAllHeaders;
 			this->dataGridView->ScrollBars = System::Windows::Forms::ScrollBars::None;
 			this->dataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::CellSelect;
-			this->dataGridView->Size = System::Drawing::Size(420, 390);
+			this->dataGridView->Size = System::Drawing::Size(437, 405);
 			this->dataGridView->TabIndex = 3;
 			this->dataGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &GameForm::dataGridView_CellContentClick);
 			// 
@@ -111,11 +104,10 @@ namespace SquareWord {
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(525, 151);
+			this->button1->Location = System::Drawing::Point(480, 82);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 75);
 			this->button1->TabIndex = 4;
-			this->button1->Text = L"Ñ";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &GameForm::button1_Click);
 			// 
@@ -123,11 +115,10 @@ namespace SquareWord {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(621, 151);
+			this->button2->Location = System::Drawing::Point(480, 168);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 75);
 			this->button2->TabIndex = 4;
-			this->button2->Text = L"Ë";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &GameForm::button2_Click);
 			// 
@@ -135,11 +126,10 @@ namespace SquareWord {
 			// 
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button3->Location = System::Drawing::Point(713, 151);
+			this->button3->Location = System::Drawing::Point(480, 258);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 75);
 			this->button3->TabIndex = 4;
-			this->button3->Text = L"Å";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &GameForm::button3_Click);
 			// 
@@ -147,11 +137,10 @@ namespace SquareWord {
 			// 
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button4->Location = System::Drawing::Point(562, 242);
+			this->button4->Location = System::Drawing::Point(576, 82);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 75);
 			this->button4->TabIndex = 4;
-			this->button4->Text = L"Ç";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
 			// 
@@ -159,11 +148,10 @@ namespace SquareWord {
 			// 
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button5->Location = System::Drawing::Point(672, 242);
+			this->button5->Location = System::Drawing::Point(576, 168);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(75, 75);
 			this->button5->TabIndex = 4;
-			this->button5->Text = L"À";
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &GameForm::button5_Click);
 			// 
@@ -175,7 +163,7 @@ namespace SquareWord {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(848, 33);
+			this->menuStrip1->Size = System::Drawing::Size(672, 33);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -195,11 +183,35 @@ namespace SquareWord {
 			this->ïðàâèëàÃðèToolStripMenuItem->Text = L"Ïðàâèëà ãðè";
 			this->ïðàâèëàÃðèToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::ïðàâèëàÃðèToolStripMenuItem_Click);
 			// 
+			// button6
+			// 
+			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button6->Location = System::Drawing::Point(576, 258);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(75, 75);
+			this->button6->TabIndex = 4;
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &GameForm::button6_Click);
+			// 
+			// button7
+			// 
+			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button7->Location = System::Drawing::Point(527, 351);
+			this->button7->Name = L"button7";
+			this->button7->Size = System::Drawing::Size(75, 75);
+			this->button7->TabIndex = 4;
+			this->button7->UseVisualStyleBackColor = true;
+			this->button7->Click += gcnew System::EventHandler(this, &GameForm::button7_Click);
+			// 
 			// GameForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(848, 541);
+			this->ClientSize = System::Drawing::Size(672, 481);
+			this->Controls->Add(this->button7);
+			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -224,6 +236,7 @@ namespace SquareWord {
 	private: System::Media::SoundPlayer^ soundClick;
 
 	// Game methods
+	private: System::String^ CharToSysString(char);
 	private: void StartGame();
 	private: void CreateGameGrid(int);
 	private: void SetStartGameGrid(int);
@@ -240,5 +253,7 @@ namespace SquareWord {
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
