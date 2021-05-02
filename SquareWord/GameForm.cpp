@@ -96,6 +96,16 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 		dataGridView->Rows[i]->HeaderCell->Value = Convert::ToString(i + 1);
 		dataGridView->Rows[i]->Height = 50;
 	}
+
+	if (size == 5) {
+		dataGridView->Size = System::Drawing::Size(323, 285);
+	}
+	else if (size == 6) {
+		dataGridView->Size = System::Drawing::Size(373, 335);
+	}
+	else if (size == 7) {
+		dataGridView->Size = System::Drawing::Size(423, 385);
+	}
 }
 
 void SquareWord::GameForm::SetStartGameGrid(int size)

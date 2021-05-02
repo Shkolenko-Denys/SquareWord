@@ -48,6 +48,7 @@ namespace SquareWord {
 	private: System::Windows::Forms::ToolStripMenuItem^ ïðàâèëàÃðèToolStripMenuItem;
 	private: System::Windows::Forms::Button^ button6;
 	private: System::Windows::Forms::Button^ button7;
+	private: System::Windows::Forms::Label^ labelMessage;
 	protected:
 
 	protected:
@@ -76,6 +77,7 @@ namespace SquareWord {
 			this->ïðàâèëàÃðèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->labelMessage = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
@@ -86,9 +88,6 @@ namespace SquareWord {
 			this->dataGridView->AllowUserToDeleteRows = false;
 			this->dataGridView->AllowUserToResizeColumns = false;
 			this->dataGridView->AllowUserToResizeRows = false;
-			this->dataGridView->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
 			this->dataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView->Location = System::Drawing::Point(22, 64);
 			this->dataGridView->MultiSelect = false;
@@ -96,7 +95,7 @@ namespace SquareWord {
 			this->dataGridView->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::AutoSizeToAllHeaders;
 			this->dataGridView->ScrollBars = System::Windows::Forms::ScrollBars::None;
 			this->dataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::CellSelect;
-			this->dataGridView->Size = System::Drawing::Size(437, 405);
+			this->dataGridView->Size = System::Drawing::Size(423, 385);
 			this->dataGridView->TabIndex = 3;
 			this->dataGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &GameForm::dataGridView_CellContentClick);
 			// 
@@ -163,7 +162,7 @@ namespace SquareWord {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(672, 33);
+			this->menuStrip1->Size = System::Drawing::Size(675, 33);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -205,11 +204,25 @@ namespace SquareWord {
 			this->button7->UseVisualStyleBackColor = true;
 			this->button7->Click += gcnew System::EventHandler(this, &GameForm::button7_Click);
 			// 
+			// labelMessage
+			// 
+			this->labelMessage->AutoSize = true;
+			this->labelMessage->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->labelMessage->ForeColor = System::Drawing::Color::Red;
+			this->labelMessage->Location = System::Drawing::Point(160, 480);
+			this->labelMessage->Name = L"labelMessage";
+			this->labelMessage->Size = System::Drawing::Size(94, 24);
+			this->labelMessage->TabIndex = 6;
+			this->labelMessage->Text = L"message";
+			this->labelMessage->Visible = false;
+			// 
 			// GameForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(672, 481);
+			this->ClientSize = System::Drawing::Size(675, 540);
+			this->Controls->Add(this->labelMessage);
 			this->Controls->Add(this->button7);
 			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button5);
