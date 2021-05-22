@@ -137,6 +137,14 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 		if (map.get_conflict_size()) {
 			labelMessage->Text = "Буква підпадає під обстріл!";
 			labelMessage->Visible = true;
+			map.incorrect(selected_cell);
+		}
+		else {
+			map.correct(selected_cell);
+			if (map.get_correct_size() == size * size) {
+				if (sound) { soundClick->Play(); }
+				MessageBox::Show("Вітаємо!", "Перемога");
+			}
 		}
 	}
 }

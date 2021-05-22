@@ -1,13 +1,23 @@
 #include "GameMap.h"
 
-bool coord::operator == (const coord& obj) const {
+bool coord::operator== (const coord& obj) const {
 	return (x == obj.x) && (y == obj.y);
+}
+
+bool coord::operator< (const coord& obj) const
+{
+	if (x < obj.x) {
+		return true;
+	}
+	else if (x == obj.x) {
+		return y < obj.y;
+	}
+	return false;
 }
 
 GameMap::GameMap()
 {
 	size = 0;
-	correct_chars = 0;
 }
 
 GameMap::~GameMap()
@@ -38,8 +48,6 @@ void GameMap::SetMap(int size)
 		map[2][2] = 'Ë';
 		map[2][3] = 'Å';
 		map[2][4] = 'Ñ';
-
-		correct_chars = 8;
 	}
 	else if (size == 6)
 	{
@@ -57,8 +65,6 @@ void GameMap::SetMap(int size)
 		map[4][3] = 'Ã';
 		map[4][4] = 'Î';
 		map[4][5] = 'Ë';
-
-		correct_chars = 12;
 	}
 	else if (size == 7)
 	{
@@ -81,14 +87,13 @@ void GameMap::SetMap(int size)
 		map[6][4] = 'Ð';
 		map[6][5] = 'È';
 		map[6][6] = 'Ñ';
-
-		correct_chars = 16;
 	}
 
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			if (map[i][j]) {
 				const_chars.push_back({ i, j });
+				correct_chars.insert({i, j});
 			}
 		}
 	}
@@ -115,22 +120,26 @@ void GameMap::check(int row, int column, char ch)
 			conflict_chars.push_back({ row, j });
 		}
 	}
-	// main diagonal check
-	for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
-		if (m1 == row && m2 == column) {
-			continue;
-		}
-		if (map[m1][m2] == ch) {
-			conflict_chars.push_back({ m1, m2 });
+	if (row == column) {
+		// main diagonal check
+		for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
+			if (m1 == row && m2 == column) {
+				continue;
+			}
+			if (map[m1][m2] == ch) {
+				conflict_chars.push_back({ m1, m2 });
+			}
 		}
 	}
-	// side diagonal check
-	for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
-		if (s1 == row && s2 == column) {
-			continue;
-		}
-		if (map[s1][s2] == ch) {
-			conflict_chars.push_back({ s1, s2 });
+	if (row == size - column - 1) {
+		// side diagonal check
+		for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
+			if (s1 == row && s2 == column) {
+				continue;
+			}
+			if (map[s1][s2] == ch) {
+				conflict_chars.push_back({ s1, s2 });
+			}
 		}
 	}
 }
