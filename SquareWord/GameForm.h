@@ -65,6 +65,9 @@ namespace SquareWord {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->dataGridView = (gcnew System::Windows::Forms::DataGridView());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
@@ -87,14 +90,45 @@ namespace SquareWord {
 			this->dataGridView->AllowUserToDeleteRows = false;
 			this->dataGridView->AllowUserToResizeColumns = false;
 			this->dataGridView->AllowUserToResizeRows = false;
+			this->dataGridView->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowFrame;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this->dataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView->ColumnHeadersVisible = false;
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Arial", 14, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->dataGridView->DefaultCellStyle = dataGridViewCellStyle2;
+			this->dataGridView->GridColor = System::Drawing::SystemColors::AppWorkspace;
 			this->dataGridView->Location = System::Drawing::Point(22, 64);
 			this->dataGridView->MultiSelect = false;
 			this->dataGridView->Name = L"dataGridView";
+			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle3->BackColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Arial", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			dataGridViewCellStyle3->ForeColor = System::Drawing::SystemColors::WindowFrame;
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView->RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			this->dataGridView->RowHeadersVisible = false;
 			this->dataGridView->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::AutoSizeToAllHeaders;
 			this->dataGridView->ScrollBars = System::Windows::Forms::ScrollBars::None;
 			this->dataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::CellSelect;
-			this->dataGridView->Size = System::Drawing::Size(423, 385);
+			this->dataGridView->Size = System::Drawing::Size(350, 350);
 			this->dataGridView->TabIndex = 3;
 			this->dataGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &GameForm::dataGridView_CellContentClick);
 			// 
@@ -102,7 +136,7 @@ namespace SquareWord {
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(480, 82);
+			this->button1->Location = System::Drawing::Point(414, 64);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 75);
 			this->button1->TabIndex = 4;
@@ -113,7 +147,7 @@ namespace SquareWord {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(480, 168);
+			this->button2->Location = System::Drawing::Point(414, 150);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 75);
 			this->button2->TabIndex = 4;
@@ -124,7 +158,7 @@ namespace SquareWord {
 			// 
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button3->Location = System::Drawing::Point(480, 258);
+			this->button3->Location = System::Drawing::Point(414, 240);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 75);
 			this->button3->TabIndex = 4;
@@ -135,7 +169,7 @@ namespace SquareWord {
 			// 
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button4->Location = System::Drawing::Point(576, 82);
+			this->button4->Location = System::Drawing::Point(510, 64);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 75);
 			this->button4->TabIndex = 4;
@@ -146,7 +180,7 @@ namespace SquareWord {
 			// 
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button5->Location = System::Drawing::Point(576, 168);
+			this->button5->Location = System::Drawing::Point(510, 150);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(75, 75);
 			this->button5->TabIndex = 4;
@@ -161,7 +195,7 @@ namespace SquareWord {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(675, 33);
+			this->menuStrip1->Size = System::Drawing::Size(616, 33);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -185,7 +219,7 @@ namespace SquareWord {
 			// 
 			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button6->Location = System::Drawing::Point(576, 258);
+			this->button6->Location = System::Drawing::Point(510, 240);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 75);
 			this->button6->TabIndex = 4;
@@ -196,7 +230,7 @@ namespace SquareWord {
 			// 
 			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button7->Location = System::Drawing::Point(527, 351);
+			this->button7->Location = System::Drawing::Point(461, 333);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(75, 75);
 			this->button7->TabIndex = 4;
@@ -209,7 +243,7 @@ namespace SquareWord {
 			this->labelMessage->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->labelMessage->ForeColor = System::Drawing::Color::Red;
-			this->labelMessage->Location = System::Drawing::Point(160, 480);
+			this->labelMessage->Location = System::Drawing::Point(18, 439);
 			this->labelMessage->Name = L"labelMessage";
 			this->labelMessage->Size = System::Drawing::Size(94, 24);
 			this->labelMessage->TabIndex = 6;
@@ -220,7 +254,7 @@ namespace SquareWord {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(675, 540);
+			this->ClientSize = System::Drawing::Size(616, 491);
 			this->Controls->Add(this->labelMessage);
 			this->Controls->Add(this->button7);
 			this->Controls->Add(this->button6);
@@ -255,7 +289,7 @@ namespace SquareWord {
 	private: void CreateGameGrid(int);
 	private: void SetStartGameGrid(int);
 	private: void SetPosition(coord, char);
-	private: void ShowConflict();
+	private: void ShowConflict(const char&);
 	
 	// Game events
 	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);

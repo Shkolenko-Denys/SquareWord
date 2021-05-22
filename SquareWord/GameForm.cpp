@@ -72,12 +72,6 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 	dataGridView->Rows->Clear();
 	dataGridView->Columns->Clear();
 
-	// set the style
-	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 14);
-	dataGridView->DefaultCellStyle->Font = font;
-	dataGridView->ColumnHeadersDefaultCellStyle->Font = font;
-	dataGridView->RowHeadersDefaultCellStyle->Font = font;
-
 	// create columns
 	for (int i = 0; i < size; i++)
 	{
@@ -98,68 +92,27 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 	}
 
 	if (size == 5) {
-		dataGridView->Size = System::Drawing::Size(323, 285);
+		dataGridView->Size = System::Drawing::Size(252, 252);
 	}
 	else if (size == 6) {
-		dataGridView->Size = System::Drawing::Size(373, 335);
+		dataGridView->Size = System::Drawing::Size(302, 302);
 	}
 	else if (size == 7) {
-		dataGridView->Size = System::Drawing::Size(423, 385);
+		dataGridView->Size = System::Drawing::Size(352, 352);
 	}
 }
 
 void SquareWord::GameForm::SetStartGameGrid(int size)
 {
-	if (size == 5)
-	{
-		dataGridView->Rows[0]->Cells[0]->Value = "С";
-		dataGridView->Rows[0]->Cells[1]->Value = "Л";
-		dataGridView->Rows[0]->Cells[2]->Value = "Е";
-		dataGridView->Rows[0]->Cells[3]->Value = "З";
-		dataGridView->Rows[0]->Cells[4]->Value = "А";
-
-		dataGridView->Rows[2]->Cells[2]->Value = "Л";
-		dataGridView->Rows[2]->Cells[3]->Value = "Е";
-		dataGridView->Rows[2]->Cells[4]->Value = "С";
-	}
-	else if (size == 6)
-	{
-		dataGridView->Rows[0]->Cells[0]->Value = "Г";
-		dataGridView->Rows[0]->Cells[1]->Value = "Л";
-		dataGridView->Rows[0]->Cells[2]->Value = "О";
-		dataGridView->Rows[0]->Cells[3]->Value = "Б";
-		dataGridView->Rows[0]->Cells[4]->Value = "У";
-		dataGridView->Rows[0]->Cells[5]->Value = "С";
-
-		dataGridView->Rows[2]->Cells[2]->Value = "Л";
-		dataGridView->Rows[2]->Cells[3]->Value = "У";
-		dataGridView->Rows[2]->Cells[4]->Value = "Г";
-
-		dataGridView->Rows[4]->Cells[3]->Value = "Г";
-		dataGridView->Rows[4]->Cells[4]->Value = "О";
-		dataGridView->Rows[4]->Cells[5]->Value = "Л";
-	}
-	else if (size == 7)
-	{
-		dataGridView->Rows[0]->Cells[0]->Value = "Р";
-		dataGridView->Rows[0]->Cells[1]->Value = "И";
-		dataGridView->Rows[0]->Cells[2]->Value = "С";
-		dataGridView->Rows[0]->Cells[3]->Value = "У";
-		dataGridView->Rows[0]->Cells[4]->Value = "Н";
-		dataGridView->Rows[0]->Cells[5]->Value = "О";
-		dataGridView->Rows[0]->Cells[6]->Value = "К";
-
-		dataGridView->Rows[2]->Cells[3]->Value = "С";
-		dataGridView->Rows[2]->Cells[4]->Value = "У";
-		dataGridView->Rows[2]->Cells[5]->Value = "К";
-
-		dataGridView->Rows[4]->Cells[3]->Value = "Н";
-		dataGridView->Rows[4]->Cells[4]->Value = "О";
-		dataGridView->Rows[4]->Cells[5]->Value = "С";
-
-		dataGridView->Rows[6]->Cells[4]->Value = "Р";
-		dataGridView->Rows[6]->Cells[5]->Value = "И";
-		dataGridView->Rows[6]->Cells[6]->Value = "С";
+	char ch;
+	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 16, FontStyle::Bold);
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (ch = map.get_value(i, j)) {
+				dataGridView->Rows[i]->Cells[j]->Value = CharToSysString(ch);
+				dataGridView->Rows[i]->Cells[j]->Style->Font = font;
+			}
+		}
 	}
 }
 
@@ -168,10 +121,22 @@ void SquareWord::GameForm::SetPosition(coord crd, char ch)
 	map.set_position(crd.x, crd.y, ch);
 }
 
-void SquareWord::GameForm::ShowConflict()
+void SquareWord::GameForm::ShowConflict(const char &ch)
 {
+	// clearing previus conflicts
+	for (int i = 0; i < map.get_conflict_size(); i++) {
+		dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
+	}
+	labelMessage->Visible = false;
+
+	map.check(selected_cell.x, selected_cell.y, ch);
 	for (int i = 0; i < map.get_conflict_size(); i++) {
 		dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::Red;
+	}
+	if (map.get_conflict_size()) {
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Style->ForeColor = Color::Green;
+		labelMessage->Text = "Буква підпадає під обстріл!";
+		labelMessage->Visible = true;
 	}
 }
 
@@ -216,8 +181,7 @@ System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System:
 		char ch = map.get_value(0, 0);
 		SetPosition(selected_cell, ch);
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		map.check(selected_cell.x, selected_cell.y, ch);
-		ShowConflict();
+		ShowConflict(ch);
 	}
 }
 
@@ -235,8 +199,7 @@ System::Void SquareWord::GameForm::button2_Click(System::Object^ sender, System:
 		char ch = map.get_value(0, 1);
 		SetPosition(selected_cell, ch);
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		map.check(selected_cell.x, selected_cell.y, ch);
-		ShowConflict();
+		ShowConflict(ch);
 	}
 }
 
@@ -254,8 +217,7 @@ System::Void SquareWord::GameForm::button3_Click(System::Object^ sender, System:
 		char ch = map.get_value(0, 2);
 		SetPosition(selected_cell, ch);
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		map.check(selected_cell.x, selected_cell.y, ch);
-		ShowConflict();
+		ShowConflict(ch);
 	}
 }
 
@@ -273,8 +235,7 @@ System::Void SquareWord::GameForm::button4_Click(System::Object^ sender, System:
 		char ch = map.get_value(0, 3);
 		SetPosition(selected_cell, ch);
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		map.check(selected_cell.x, selected_cell.y, ch);
-		ShowConflict();
+		ShowConflict(ch);
 	}
 }
 
@@ -292,8 +253,7 @@ System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System:
 		char ch = map.get_value(0, 4);
 		SetPosition(selected_cell, ch);
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		map.check(selected_cell.x, selected_cell.y, ch);
-		ShowConflict();
+		ShowConflict(ch);
 	}
 }
 
@@ -311,8 +271,7 @@ System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System:
 		char ch = map.get_value(0, 5);
 		SetPosition(selected_cell, ch);
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		map.check(selected_cell.x, selected_cell.y, ch);
-		ShowConflict();
+		ShowConflict(ch);
 	}
 }
 
@@ -330,7 +289,6 @@ System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System:
 		char ch = map.get_value(0, 6);
 		SetPosition(selected_cell, ch);
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		map.check(selected_cell.x, selected_cell.y, ch);
-		ShowConflict();
+		ShowConflict(ch);
 	}
 }
