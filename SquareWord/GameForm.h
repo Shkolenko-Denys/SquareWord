@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GameMap.h"
-#include "StartForm.h"
 
 namespace SquareWord {
 
@@ -246,7 +245,9 @@ namespace SquareWord {
 #pragma endregion
 	// Game fields
 	public: int size;
+	public: bool computerHelp;
 	private: System::Media::SoundPlayer^ soundClick;
+	private: System::Media::SoundPlayer^ soundIncorrect;
 
 	// Game methods
 	private: System::String^ CharToSysString(char);

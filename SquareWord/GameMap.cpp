@@ -1,5 +1,9 @@
 #include "GameMap.h"
 
+bool coord::operator == (const coord& obj) const {
+	return (x == obj.x) && (y == obj.y);
+}
+
 GameMap::GameMap()
 {
 	size = 0;
@@ -73,6 +77,14 @@ void GameMap::SetMap(int size)
 		map[6][5] = 'È';
 		map[6][6] = 'Ñ';
 	}
+
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (map[i][j]) {
+				const_chars.push_back({ i, j });
+			}
+		}
+	}
 }
 
 bool GameMap::check(int row, int column, char ch)
@@ -119,4 +131,9 @@ bool GameMap::check(int row, int column, char ch)
 void GameMap::set_position(int row, int column, char ch)
 {
 	map[row][column] = ch;
+}
+
+bool GameMap::isConst(const coord &crd)
+{
+	return std::find(const_chars.begin(), const_chars.end(), crd) != const_chars.end();
 }

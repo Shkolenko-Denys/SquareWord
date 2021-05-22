@@ -1,5 +1,4 @@
 #include "GameForm.h"
-#include "StartForm.h"
 
 // common data
 GameMap map;
@@ -22,6 +21,7 @@ System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System:
 {
 	// Initializing sounds
 	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
+	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
 	sound = true;
 	if (size == 5)
 	{
@@ -173,6 +173,7 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 	if (sound) {
 		soundClick->Play();
 	}
+	labelMessage->Visible = false;
 
 	auto senderGrid = (DataGridView^)sender; // transform the obj into a table
 
@@ -196,84 +197,119 @@ System::Void SquareWord::GameForm::правилаГриToolStripMenuItem_Click(System::Obj
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
 	}
+	else {
+		if (sound) { soundClick->Play(); }
 
-	// Make a move
-	char ch = map.get_value(0, 0);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		// Make a move
+		char ch = map.get_value(0, 0);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	}
 }
 
 System::Void SquareWord::GameForm::button2_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
 	}
+	else {
+		if (sound) { soundClick->Play(); }
 
-	// Make a move
-	char ch = map.get_value(0, 1);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		// Make a move
+		char ch = map.get_value(0, 1);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	}
 }
 
 System::Void SquareWord::GameForm::button3_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
 	}
+	else {
+		if (sound) { soundClick->Play(); }
 
-	// Make a move
-	char ch = map.get_value(0, 2);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		// Make a move
+		char ch = map.get_value(0, 2);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	}
 }
 
 System::Void SquareWord::GameForm::button4_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
 	}
+	else {
+		if (sound) { soundClick->Play(); }
 
-	// Make a move
-	char ch = map.get_value(0, 3);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		// Make a move
+		char ch = map.get_value(0, 3);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	}
 }
 
 System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
 	}
+	else {
+		if (sound) { soundClick->Play(); }
 
-	// Make a move
-	char ch = map.get_value(0, 4);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		// Make a move
+		char ch = map.get_value(0, 4);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	}
 }
 
 System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
 	}
+	else {
+		if (sound) { soundClick->Play(); }
 
-	// Make a move
-	char ch = map.get_value(0, 5);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		// Make a move
+		char ch = map.get_value(0, 5);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	}
 }
 
 System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
 	}
+	else {
+		if (sound) { soundClick->Play(); }
 
-	// Make a move
-	char ch = map.get_value(0, 6);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		// Make a move
+		char ch = map.get_value(0, 6);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	}
 }

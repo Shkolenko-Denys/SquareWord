@@ -1,5 +1,4 @@
 #include "StartForm.h"
-#include "GameForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -47,7 +46,6 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     GameForm^ form = gcnew GameForm();
     form->size = size;
     form->ShowDialog();
-    // this->Hide();
 }
 
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)

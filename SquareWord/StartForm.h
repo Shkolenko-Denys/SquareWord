@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GameForm.h"
+
 namespace SquareWord {
 
 	using namespace System;
@@ -164,8 +166,11 @@ namespace SquareWord {
 
 		}
 #pragma endregion
+	
+	// Game fields
 	private: System::Media::SoundPlayer^ sound;
 
+	// Game events
 	private: System::Void ïðîÏðîãðàìóToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void numSize_ValueChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void computerHelp_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
