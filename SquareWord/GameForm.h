@@ -106,7 +106,7 @@ namespace SquareWord {
 			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Window;
 			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Arial", 14, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Red;
 			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
 			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
 			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
@@ -290,6 +290,7 @@ namespace SquareWord {
 	private: void SetStartGameGrid(int);
 	private: void SetPosition(coord, char);
 	private: void ShowConflict(const char&);
+	private: void ButtonSetChar(int, int);
 	
 	// Game events
 	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);

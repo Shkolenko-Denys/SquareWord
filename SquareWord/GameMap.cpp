@@ -7,6 +7,7 @@ bool coord::operator == (const coord& obj) const {
 GameMap::GameMap()
 {
 	size = 0;
+	correct_chars = 0;
 }
 
 GameMap::~GameMap()
@@ -37,6 +38,8 @@ void GameMap::SetMap(int size)
 		map[2][2] = 'Ë';
 		map[2][3] = 'Å';
 		map[2][4] = 'Ñ';
+
+		correct_chars = 8;
 	}
 	else if (size == 6)
 	{
@@ -54,6 +57,8 @@ void GameMap::SetMap(int size)
 		map[4][3] = 'Ã';
 		map[4][4] = 'Î';
 		map[4][5] = 'Ë';
+
+		correct_chars = 12;
 	}
 	else if (size == 7)
 	{
@@ -76,6 +81,8 @@ void GameMap::SetMap(int size)
 		map[6][4] = 'Ð';
 		map[6][5] = 'È';
 		map[6][6] = 'Ñ';
+
+		correct_chars = 16;
 	}
 
 	for (int i = 0; i < size; i++) {

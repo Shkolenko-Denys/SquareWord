@@ -41,10 +41,12 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     sound->Play();
     int size;
     size = Convert::ToInt32(numSize->Value);
+    bool help = computerHelp->Checked;
 
     // Create GameForm 
     GameForm^ form = gcnew GameForm();
     form->size = size;
+    form->computerHelp = help;
     form->ShowDialog();
 }
 

@@ -123,20 +123,39 @@ void SquareWord::GameForm::SetPosition(coord crd, char ch)
 
 void SquareWord::GameForm::ShowConflict(const char &ch)
 {
-	// clearing previus conflicts
-	for (int i = 0; i < map.get_conflict_size(); i++) {
-		dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
-	}
-	labelMessage->Visible = false;
+	if (computerHelp) {
+		// clearing previus conflicts
+		for (int i = 0; i < map.get_conflict_size(); i++) {
+			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
+		}
+		labelMessage->Visible = false;
 
-	map.check(selected_cell.x, selected_cell.y, ch);
-	for (int i = 0; i < map.get_conflict_size(); i++) {
-		dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::Red;
+		map.check(selected_cell.x, selected_cell.y, ch);
+		for (int i = 0; i < map.get_conflict_size(); i++) {
+			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::Red;
+		}
+		if (map.get_conflict_size()) {
+			labelMessage->Text = "Буква підпадає під обстріл!";
+			labelMessage->Visible = true;
+		}
 	}
-	if (map.get_conflict_size()) {
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Style->ForeColor = Color::Green;
-		labelMessage->Text = "Буква підпадає під обстріл!";
+}
+
+void SquareWord::GameForm::ButtonSetChar(int i, int j)
+{
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Не можна змінювати стартові букви!";
 		labelMessage->Visible = true;
+	}
+	else {
+		if (sound) { soundClick->Play(); }
+
+		// Make a move
+		char ch = map.get_value(i, j);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		ShowConflict(ch);
 	}
 }
 
@@ -144,6 +163,10 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 {
 	if (sound) {
 		soundClick->Play();
+	}
+	// clearing previus conflicts
+	for (int i = 0; i < map.get_conflict_size(); i++) {
+		dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
 	}
 	labelMessage->Visible = false;
 
@@ -169,126 +192,35 @@ System::Void SquareWord::GameForm::правилаГриToolStripMenuItem_Click(System::Obj
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (map.isConst(selected_cell)) {
-		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		if (sound) { soundClick->Play(); }
-
-		// Make a move
-		char ch = map.get_value(0, 0);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-	}
+	ButtonSetChar(0, 0);
 }
 
 System::Void SquareWord::GameForm::button2_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (map.isConst(selected_cell)) {
-		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		if (sound) { soundClick->Play(); }
-
-		// Make a move
-		char ch = map.get_value(0, 1);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-	}
+	ButtonSetChar(0, 1);
 }
 
 System::Void SquareWord::GameForm::button3_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (map.isConst(selected_cell)) {
-		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		if (sound) { soundClick->Play(); }
-
-		// Make a move
-		char ch = map.get_value(0, 2);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-	}
+	ButtonSetChar(0, 2);
 }
 
 System::Void SquareWord::GameForm::button4_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (map.isConst(selected_cell)) {
-		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		if (sound) { soundClick->Play(); }
-
-		// Make a move
-		char ch = map.get_value(0, 3);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-	}
+	ButtonSetChar(0, 3);
 }
 
 System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (map.isConst(selected_cell)) {
-		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		if (sound) { soundClick->Play(); }
-
-		// Make a move
-		char ch = map.get_value(0, 4);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-	}
+	ButtonSetChar(0, 4);
 }
 
 System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (map.isConst(selected_cell)) {
-		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		if (sound) { soundClick->Play(); }
-
-		// Make a move
-		char ch = map.get_value(0, 5);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-	}
+	ButtonSetChar(0, 5);
 }
 
 System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (map.isConst(selected_cell)) {
-		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		if (sound) { soundClick->Play(); }
-
-		// Make a move
-		char ch = map.get_value(0, 6);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-	}
+	ButtonSetChar(0, 6);
 }
