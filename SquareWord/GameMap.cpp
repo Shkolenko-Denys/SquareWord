@@ -87,45 +87,48 @@ void GameMap::SetMap(int size)
 	}
 }
 
-bool GameMap::check(int row, int column, char ch)
+void GameMap::check(int row, int column, char ch)
 {
 	// check vertically
 	for (int i = 0; i < size; ++i) {
-		if (i = row) {
+		if (i == row) {
 			continue;
 		}
 		if (map[i][column] == ch) {
-			return false;
+			conflict_chars.push_back({ i, column });
 		}
 	}
 	// check horizontally
 	for (int j = 0; j < size; ++j) {
-		if (j = column) {
+		if (j == column) {
 			continue;
 		}
 		if (map[row][j] == ch) {
-			return false;
+			conflict_chars.push_back({ row, j });
 		}
 	}
-	// main diagonal check
-	for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
-		if (m1 == row && m2 == column) {
-			continue;
-		}
+	// '\' diagonal check
+	for (int m1 = row + 1, m2 = column + 1; m1 < size && m2 < size; m1++, m2++) {
 		if (map[m1][m2] == ch) {
-			return false;
+			conflict_chars.push_back({ m1, m2 });
 		}
 	}
-	// side diagonal check
-	for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
-		if (s1 == row && s2 == column) {
-			continue;
+	for (int m1 = row - 1, m2 = column - 1; m1 > 0 && m2 > 0; m1--, m2--) {
+		if (map[m1][m2] == ch) {
+			conflict_chars.push_back({ m1, m2 });
 		}
+	}
+	// '/' diagonal check
+	for (int s1 = row - 1, s2 = column + 1; s1 > 0 && s2 < size; s1--, s2++) {
 		if (map[s1][s2] == ch) {
-			return false;
+			conflict_chars.push_back({ s1, s2 });
 		}
 	}
-	return true;
+	for (int s1 = row + 1, s2 = column - 1; s1 < size && s2 > 0; s1++, s2--) {
+		if (map[s1][s2] == ch) {
+			conflict_chars.push_back({ s1, s2 });
+		}
+	}
 }
 
 void GameMap::set_position(int row, int column, char ch)

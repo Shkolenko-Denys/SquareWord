@@ -255,6 +255,7 @@ namespace SquareWord {
 	private: void CreateGameGrid(int);
 	private: void SetStartGameGrid(int);
 	private: void SetPosition(coord, char);
+	private: void ShowConflict();
 	
 	// Game events
 	private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
