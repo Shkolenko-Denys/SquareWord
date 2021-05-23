@@ -41,6 +41,9 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     // Create GameForm 
     GameForm^ form = gcnew GameForm();
     form->size = size;
+    form->s = 0;
+    form->m = 0;
+    form->h = 0;
     if (radioButtonShow->Checked) {
         form->mode = GameMode::show;
     }

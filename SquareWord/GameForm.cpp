@@ -170,7 +170,9 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 
 void SquareWord::GameForm::ButtonSetChar(int i, int j)
 {
+	if (!timer1->Enabled) { timer1->Enabled = true; }
 	if (sound) { soundClick->Play(); }
+
 	if (map.isConst(selected_cell)) {
 		labelMessage->Text = "Не можна змінювати стартові букви!";
 		labelMessage->Visible = true;
@@ -350,4 +352,33 @@ System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System:
 System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	ButtonSetChar(0, 6);
+}
+
+System::Void SquareWord::GameForm::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
+{
+	s++;
+	
+	if (s == 60) {
+		s = 0;
+		m++;
+	}
+	if (m == 60) {
+		m = 0;
+		h++;
+	}
+	
+	sec = Convert::ToString(s);
+	if (s < 10) {
+		sec = "0" + sec;
+	}
+	min = Convert::ToString(m);
+	if (m < 10) {
+		min = "0" + min;
+	}
+	hour = Convert::ToString(h);
+	if (h < 10) {
+		hour = "0" + hour;
+	}
+
+	Time->Text = hour + ":" + min + ":" + sec;
 }
