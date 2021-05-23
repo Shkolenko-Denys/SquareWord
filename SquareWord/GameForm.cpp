@@ -36,33 +36,33 @@ System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System:
 	sound = true;
 	if (size == 5)
 	{
-		this->button1->Text = L"�";
-		this->button2->Text = L"�";
-		this->button3->Text = L"�";
-		this->button4->Text = L"�";
-		this->button5->Text = L"�";
+		this->button1->Text = L"Ñ";
+		this->button2->Text = L"Ë";
+		this->button3->Text = L"Å";
+		this->button4->Text = L"Ç";
+		this->button5->Text = L"À";
 		this->button6->Visible = false;
 		this->button7->Visible = false;
 	}
 	else if (size == 6)
 	{
-		this->button1->Text = L"�";
-		this->button2->Text = L"�";
-		this->button3->Text = L"�";
-		this->button4->Text = L"�";
-		this->button5->Text = L"�";
-		this->button6->Text = L"�";
+		this->button1->Text = L"Ã";
+		this->button2->Text = L"Ë";
+		this->button3->Text = L"Î";
+		this->button4->Text = L"Á";
+		this->button5->Text = L"Ó";
+		this->button6->Text = L"Ñ";
 		this->button7->Visible = false;
 	}
 	else if (size == 7)
 	{
-		this->button1->Text = L"�";
-		this->button2->Text = L"�";
-		this->button3->Text = L"�";
-		this->button4->Text = L"�";
-		this->button5->Text = L"�";
-		this->button6->Text = L"�";
-		this->button7->Text = L"�";
+		this->button1->Text = L"Ð";
+		this->button2->Text = L"È";
+		this->button3->Text = L"Ñ";
+		this->button4->Text = L"Ó";
+		this->button5->Text = L"Í";
+		this->button6->Text = L"Î";
+		this->button7->Text = L"Ê";
 	}
 
 	StartGame();
@@ -148,7 +148,7 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 	}
 
 	if (map.get_conflict_size()) {
-		labelMessage->Text = "����� ������ �� ������!";
+		labelMessage->Text = "Áóêâà ï³äïàäàº ï³ä îáñòð³ë!";
 		labelMessage->Visible = true;
 		map.incorrect(selected_cell);
 	}
@@ -158,7 +158,7 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 
 	if (map.get_correct_size() == size * size) {
 		if (sound) { soundClick->Play(); }
-		MessageBox::Show("³����!", "��������");
+		MessageBox::Show("Â³òàºìî!", "Ïåðåìîãà");
 		steps = 0;
 	}
 }
@@ -167,7 +167,7 @@ void SquareWord::GameForm::ButtonSetChar(int i, int j)
 {
 	if (map.isConst(selected_cell)) {
 		if (sound) { soundIncorrect->Play(); }
-		labelMessage->Text = "�� ����� �������� ������� �����!";
+		labelMessage->Text = "Íå ìîæíà çì³íþâàòè ñòàðòîâ³ áóêâè!";
 		labelMessage->Visible = true;
 	}
 	else {
@@ -233,66 +233,66 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 			ch = map.get_conf_char(i);
 			if (size == 5) {
 				switch (ch) {
-				case '�':
+				case 'Ñ':
 					this->button1->Visible = false;
 					break;
-				case '�':
+				case 'Ë':
 					this->button2->Visible = false;
 					break;
-				case '�':
+				case 'Å':
 					this->button3->Visible = false;
 					break;
-				case '�':
+				case 'Ç':
 					this->button4->Visible = false;
 					break;
-				case '�':
+				case 'À':
 					this->button5->Visible = false;
 					break;
 				}
 			}
 			else if (size == 6) {
 				switch (ch) {
-				case '�':
+				case 'Ã':
 					this->button1->Visible = false;
 					break;
-				case '�':
+				case 'Ë':
 					this->button2->Visible = false;
 					break;
-				case '�':
+				case 'Î':
 					this->button3->Visible = false;
 					break;
-				case '�':
+				case 'Á':
 					this->button4->Visible = false;
 					break;
-				case '�':
+				case 'Ó':
 					this->button5->Visible = false;
 					break;
-				case '�':
+				case 'Ñ':
 					this->button6->Visible = false;
 					break;
 				}
 			}
 			else if (size == 7) {
 				switch (ch) {
-				case '�':
+				case 'Ð':
 					this->button1->Visible = false;
 					break;
-				case '�':
+				case 'È':
 					this->button2->Visible = false;
 					break;
-				case '�':
+				case 'Ñ':
 					this->button3->Visible = false;
 					break;
-				case '�':
+				case 'Ó':
 					this->button4->Visible = false;
 					break;
-				case '�':
+				case 'Í':
 					this->button5->Visible = false;
 					break;
-				case '�':
+				case 'Î':
 					this->button6->Visible = false;
 					break;
-				case '�':
+				case 'Ê':
 					this->button7->Visible = false;
 					break;
 				}
@@ -301,17 +301,17 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 	}
 }
 
-System::Void SquareWord::GameForm::�����������������ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	Close();
 }
 
-System::Void SquareWord::GameForm::����������ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::ïðàâèëàÃðèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (sound) {
 		soundClick->Play();
 	}
-	MessageBox::Show("�������", "�������");
+	MessageBox::Show("Заповніть порожні клітинки буквами з числа наявних так, щоб в кожному горизонтальному, вертикальному ряду і в діагоналях квадрата не було двох однакових букв, тобто кожна буква зустрічалася б по одному разу.", "Правила");
 }
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
