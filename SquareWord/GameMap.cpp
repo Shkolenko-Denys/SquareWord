@@ -144,6 +144,43 @@ void GameMap::check(int row, int column, char ch)
 	}
 }
 
+void GameMap::check(int row, int column)
+{
+	conf_chars.clear();
+	// check vertically
+	for (int i = 0; i < size; ++i) {
+		if (i == row) {
+			continue;
+		}
+		conf_chars.insert(map[i][column]);
+	}
+	// check horizontally
+	for (int j = 0; j < size; ++j) {
+		if (j == column) {
+			continue;
+		}
+		conf_chars.insert(map[row][j]);
+	}
+	if (row == column) {
+		// main diagonal check
+		for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
+			if (m1 == row && m2 == column) {
+				continue;
+			}
+			conf_chars.insert(map[m1][m2]);
+		}
+	}
+	if (row == size - column - 1) {
+		// side diagonal check
+		for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
+			if (s1 == row && s2 == column) {
+				continue;
+			}
+			conf_chars.insert(map[s1][s2]);
+		}
+	}
+}
+
 void GameMap::set_position(int row, int column, char ch)
 {
 	map[row][column] = ch;
@@ -152,4 +189,10 @@ void GameMap::set_position(int row, int column, char ch)
 bool GameMap::isConst(const coord &crd)
 {
 	return std::find(const_chars.begin(), const_chars.end(), crd) != const_chars.end();
+}
+
+char GameMap::get_conf_char(int i) const {
+	std::set<char>::iterator it = conf_chars.begin();
+	std::advance(it, i);
+	return *it;
 }
