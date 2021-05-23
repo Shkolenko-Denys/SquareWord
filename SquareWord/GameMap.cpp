@@ -1,5 +1,20 @@
 #include "GameMap.h"
 
+bool coord::operator== (const coord& obj) const {
+	return (x == obj.x) && (y == obj.y);
+}
+
+bool coord::operator< (const coord& obj) const
+{
+	if (x < obj.x) {
+		return true;
+	}
+	else if (x == obj.x) {
+		return y < obj.y;
+	}
+	return false;
+}
+
 GameMap::GameMap()
 {
 	size = 0;
@@ -73,50 +88,111 @@ void GameMap::SetMap(int size)
 		map[6][5] = 'È';
 		map[6][6] = 'Ñ';
 	}
+
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (map[i][j]) {
+				const_chars.push_back({ i, j });
+				correct_chars.insert({i, j});
+			}
+		}
+	}
 }
 
-bool GameMap::check(int row, int column, char ch)
+void GameMap::check(int row, int column, char ch)
 {
+	conflict_chars.clear();
 	// check vertically
 	for (int i = 0; i < size; ++i) {
-		if (i = row) {
+		if (i == row) {
 			continue;
 		}
 		if (map[i][column] == ch) {
-			return false;
+			conflict_chars.push_back({ i, column });
 		}
 	}
 	// check horizontally
 	for (int j = 0; j < size; ++j) {
-		if (j = column) {
+		if (j == column) {
 			continue;
 		}
 		if (map[row][j] == ch) {
-			return false;
+			conflict_chars.push_back({ row, j });
 		}
 	}
-	// main diagonal check
-	for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
-		if (m1 == row && m2 == column) {
+	if (row == column) {
+		// main diagonal check
+		for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
+			if (m1 == row && m2 == column) {
+				continue;
+			}
+			if (map[m1][m2] == ch) {
+				conflict_chars.push_back({ m1, m2 });
+			}
+		}
+	}
+	if (row == size - column - 1) {
+		// side diagonal check
+		for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
+			if (s1 == row && s2 == column) {
+				continue;
+			}
+			if (map[s1][s2] == ch) {
+				conflict_chars.push_back({ s1, s2 });
+			}
+		}
+	}
+}
+
+void GameMap::check(int row, int column)
+{
+	conf_chars.clear();
+	// check vertically
+	for (int i = 0; i < size; ++i) {
+		if (i == row) {
 			continue;
 		}
-		if (map[m1][m2] == ch) {
-			return false;
-		}
+		conf_chars.insert(map[i][column]);
 	}
-	// side diagonal check
-	for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
-		if (s1 == row && s2 == column) {
+	// check horizontally
+	for (int j = 0; j < size; ++j) {
+		if (j == column) {
 			continue;
 		}
-		if (map[s1][s2] == ch) {
-			return false;
+		conf_chars.insert(map[row][j]);
+	}
+	if (row == column) {
+		// main diagonal check
+		for (int m1 = 0, m2 = 0; m1 < size && m2 < size; m1++, m2++) {
+			if (m1 == row && m2 == column) {
+				continue;
+			}
+			conf_chars.insert(map[m1][m2]);
 		}
 	}
-	return true;
+	if (row == size - column - 1) {
+		// side diagonal check
+		for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
+			if (s1 == row && s2 == column) {
+				continue;
+			}
+			conf_chars.insert(map[s1][s2]);
+		}
+	}
 }
 
 void GameMap::set_position(int row, int column, char ch)
 {
 	map[row][column] = ch;
+}
+
+bool GameMap::isConst(const coord &crd)
+{
+	return std::find(const_chars.begin(), const_chars.end(), crd) != const_chars.end();
+}
+
+char GameMap::get_conf_char(int i) const {
+	std::set<char>::iterator it = conf_chars.begin();
+	std::advance(it, i);
+	return *it;
 }

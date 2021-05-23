@@ -1,9 +1,9 @@
 #include "GameForm.h"
-#include "StartForm.h"
 
 // common data
 GameMap map;
 coord selected_cell;
+int steps = 0;
 
 // flags
 bool sound;
@@ -18,10 +18,21 @@ System::String^ SquareWord::GameForm::CharToSysString(char ch)
 	return str;
 }
 
+// int to System::String^
+System::String^ SquareWord::GameForm::IntToSysString(int d)
+{
+	char* arr = new char[DIGIT_CAPACITY]();
+	itoa(d, arr, 10);
+	String^ str = gcnew String(arr);
+	delete[] arr;
+	return str;
+}
+
 System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
 	// Initializing sounds
 	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
+	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
 	sound = true;
 	if (size == 5)
 	{
@@ -72,12 +83,6 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 	dataGridView->Rows->Clear();
 	dataGridView->Columns->Clear();
 
-	// set the style
-	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 14);
-	dataGridView->DefaultCellStyle->Font = font;
-	dataGridView->ColumnHeadersDefaultCellStyle->Font = font;
-	dataGridView->RowHeadersDefaultCellStyle->Font = font;
-
 	// create columns
 	for (int i = 0; i < size; i++)
 	{
@@ -96,60 +101,29 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 		dataGridView->Rows[i]->HeaderCell->Value = Convert::ToString(i + 1);
 		dataGridView->Rows[i]->Height = 50;
 	}
+
+	if (size == 5) {
+		dataGridView->Size = System::Drawing::Size(252, 252);
+	}
+	else if (size == 6) {
+		dataGridView->Size = System::Drawing::Size(302, 302);
+	}
+	else if (size == 7) {
+		dataGridView->Size = System::Drawing::Size(352, 352);
+	}
 }
 
 void SquareWord::GameForm::SetStartGameGrid(int size)
 {
-	if (size == 5)
-	{
-		dataGridView->Rows[0]->Cells[0]->Value = "Ñ";
-		dataGridView->Rows[0]->Cells[1]->Value = "Ë";
-		dataGridView->Rows[0]->Cells[2]->Value = "Å";
-		dataGridView->Rows[0]->Cells[3]->Value = "Ç";
-		dataGridView->Rows[0]->Cells[4]->Value = "À";
-
-		dataGridView->Rows[2]->Cells[2]->Value = "Ë";
-		dataGridView->Rows[2]->Cells[3]->Value = "Å";
-		dataGridView->Rows[2]->Cells[4]->Value = "Ñ";
-	}
-	else if (size == 6)
-	{
-		dataGridView->Rows[0]->Cells[0]->Value = "Ã";
-		dataGridView->Rows[0]->Cells[1]->Value = "Ë";
-		dataGridView->Rows[0]->Cells[2]->Value = "Î";
-		dataGridView->Rows[0]->Cells[3]->Value = "Á";
-		dataGridView->Rows[0]->Cells[4]->Value = "Ó";
-		dataGridView->Rows[0]->Cells[5]->Value = "Ñ";
-
-		dataGridView->Rows[2]->Cells[2]->Value = "Ë";
-		dataGridView->Rows[2]->Cells[3]->Value = "Ó";
-		dataGridView->Rows[2]->Cells[4]->Value = "Ã";
-
-		dataGridView->Rows[4]->Cells[3]->Value = "Ã";
-		dataGridView->Rows[4]->Cells[4]->Value = "Î";
-		dataGridView->Rows[4]->Cells[5]->Value = "Ë";
-	}
-	else if (size == 7)
-	{
-		dataGridView->Rows[0]->Cells[0]->Value = "Ð";
-		dataGridView->Rows[0]->Cells[1]->Value = "È";
-		dataGridView->Rows[0]->Cells[2]->Value = "Ñ";
-		dataGridView->Rows[0]->Cells[3]->Value = "Ó";
-		dataGridView->Rows[0]->Cells[4]->Value = "Í";
-		dataGridView->Rows[0]->Cells[5]->Value = "Î";
-		dataGridView->Rows[0]->Cells[6]->Value = "Ê";
-
-		dataGridView->Rows[2]->Cells[3]->Value = "Ñ";
-		dataGridView->Rows[2]->Cells[4]->Value = "Ó";
-		dataGridView->Rows[2]->Cells[5]->Value = "Ê";
-
-		dataGridView->Rows[4]->Cells[3]->Value = "Í";
-		dataGridView->Rows[4]->Cells[4]->Value = "Î";
-		dataGridView->Rows[4]->Cells[5]->Value = "Ñ";
-
-		dataGridView->Rows[6]->Cells[4]->Value = "Ð";
-		dataGridView->Rows[6]->Cells[5]->Value = "È";
-		dataGridView->Rows[6]->Cells[6]->Value = "Ñ";
+	char ch;
+	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 16, FontStyle::Bold);
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (ch = map.get_value(i, j)) {
+				dataGridView->Rows[i]->Cells[j]->Value = CharToSysString(ch);
+				dataGridView->Rows[i]->Cells[j]->Style->Font = font;
+			}
+		}
 	}
 }
 
@@ -158,17 +132,173 @@ void SquareWord::GameForm::SetPosition(coord crd, char ch)
 	map.set_position(crd.x, crd.y, ch);
 }
 
+void SquareWord::GameForm::ShowConflict(const char &ch)
+{
+	if (mode == GameMode::show) {
+		// clearing previus conflicts
+		for (int i = 0; i < map.get_conflict_size(); i++) {
+			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
+		}
+		labelMessage->Visible = false;
+
+		map.check(selected_cell.x, selected_cell.y, ch);
+		for (int i = 0; i < map.get_conflict_size(); i++) {
+			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::Red;
+		}
+	}
+
+	if (map.get_conflict_size()) {
+		labelMessage->Text = "Áóêâà ï³äïàäàº ï³ä îáñòð³ë!";
+		labelMessage->Visible = true;
+		map.incorrect(selected_cell);
+	}
+	else {
+		map.correct(selected_cell);
+	}
+
+	if (map.get_correct_size() == size * size) {
+		if (sound) { soundClick->Play(); }
+		MessageBox::Show("Â³òàºìî!", "Ïåðåìîãà");
+		steps = 0;
+	}
+}
+
+void SquareWord::GameForm::ButtonSetChar(int i, int j)
+{
+	if (map.isConst(selected_cell)) {
+		if (sound) { soundIncorrect->Play(); }
+		labelMessage->Text = "Íå ìîæíà çì³íþâàòè ñòàðòîâ³ áóêâè!";
+		labelMessage->Visible = true;
+	}
+	else {
+		if (sound) { soundClick->Play(); }
+
+		// Make a move
+		char ch = map.get_value(i, j);
+		SetPosition(selected_cell, ch);
+		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+		ShowConflict(ch);
+	}
+	steps++;
+	labelSteps->Text = IntToSysString(steps);
+}
+
 System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
 	if (sound) {
 		soundClick->Play();
 	}
 
+	if (size == 5) {
+		this->button1->Visible = true;
+		this->button2->Visible = true;
+		this->button3->Visible = true;
+		this->button4->Visible = true;
+		this->button5->Visible = true;
+	}
+	else if (size == 6) {
+		this->button1->Visible = true;
+		this->button2->Visible = true;
+		this->button3->Visible = true;
+		this->button4->Visible = true;
+		this->button5->Visible = true;
+		this->button6->Visible = true;
+	}
+	else if (size == 7) {
+		this->button1->Visible = true;
+		this->button2->Visible = true;
+		this->button3->Visible = true;
+		this->button4->Visible = true;
+		this->button5->Visible = true;
+		this->button6->Visible = true;
+		this->button7->Visible = true;
+	}
+
+	// clearing previus conflicts
+	for (int i = 0; i < map.get_conflict_size(); i++) {
+		dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
+	}
+	labelMessage->Visible = false;
+
 	auto senderGrid = (DataGridView^)sender; // transform the obj into a table
 
 	// Remember the indices of the selected cell
 	selected_cell.x = e->RowIndex;
 	selected_cell.y = e->ColumnIndex;
+
+	if (mode == GameMode::hide) {
+		char ch;
+		map.check(selected_cell.x, selected_cell.y);
+		for (int i = 0; i < map.get_conf_size(); i++) {
+			ch = map.get_conf_char(i);
+			if (size == 5) {
+				switch (ch) {
+				case 'Ñ':
+					this->button1->Visible = false;
+					break;
+				case 'Ë':
+					this->button2->Visible = false;
+					break;
+				case 'Å':
+					this->button3->Visible = false;
+					break;
+				case 'Ç':
+					this->button4->Visible = false;
+					break;
+				case 'À':
+					this->button5->Visible = false;
+					break;
+				}
+			}
+			else if (size == 6) {
+				switch (ch) {
+				case 'Ã':
+					this->button1->Visible = false;
+					break;
+				case 'Ë':
+					this->button2->Visible = false;
+					break;
+				case 'Î':
+					this->button3->Visible = false;
+					break;
+				case 'Á':
+					this->button4->Visible = false;
+					break;
+				case 'Ó':
+					this->button5->Visible = false;
+					break;
+				case 'Ñ':
+					this->button6->Visible = false;
+					break;
+				}
+			}
+			else if (size == 7) {
+				switch (ch) {
+				case 'Ð':
+					this->button1->Visible = false;
+					break;
+				case 'È':
+					this->button2->Visible = false;
+					break;
+				case 'Ñ':
+					this->button3->Visible = false;
+					break;
+				case 'Ó':
+					this->button4->Visible = false;
+					break;
+				case 'Í':
+					this->button5->Visible = false;
+					break;
+				case 'Î':
+					this->button6->Visible = false;
+					break;
+				case 'Ê':
+					this->button7->Visible = false;
+					break;
+				}
+			}
+		}
+	}
 }
 
 System::Void SquareWord::GameForm::ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -186,84 +316,35 @@ System::Void SquareWord::GameForm::ïðàâèëàÃðèToolStripMenuItem_Click(System::Obj
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-
-	// Make a move
-	char ch = map.get_value(0, 0);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	ButtonSetChar(0, 0);
 }
 
 System::Void SquareWord::GameForm::button2_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-
-	// Make a move
-	char ch = map.get_value(0, 1);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	ButtonSetChar(0, 1);
 }
 
 System::Void SquareWord::GameForm::button3_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-
-	// Make a move
-	char ch = map.get_value(0, 2);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	ButtonSetChar(0, 2);
 }
 
 System::Void SquareWord::GameForm::button4_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-
-	// Make a move
-	char ch = map.get_value(0, 3);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	ButtonSetChar(0, 3);
 }
 
 System::Void SquareWord::GameForm::button5_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-
-	// Make a move
-	char ch = map.get_value(0, 4);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	ButtonSetChar(0, 4);
 }
 
 System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-
-	// Make a move
-	char ch = map.get_value(0, 5);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	ButtonSetChar(0, 5);
 }
 
 System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-
-	// Make a move
-	char ch = map.get_value(0, 6);
-	SetPosition(selected_cell, ch);
-	dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
+	ButtonSetChar(0, 6);
 }

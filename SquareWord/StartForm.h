@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GameForm.h"
+
 namespace SquareWord {
 
 	using namespace System;
@@ -30,13 +32,19 @@ namespace SquareWord {
 		}
 	private: System::Windows::Forms::Label^ label1;
 	protected:
-	private: System::Windows::Forms::CheckBox^ computerHelp;
+
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ проПрограмуToolStripMenuItem;
 
 	private: System::Windows::Forms::Button^ buttonStartGame;
 	private: System::Windows::Forms::Button^ buttonExitGame;
 	private: System::Windows::Forms::NumericUpDown^ numSize;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::RadioButton^ radioButtonHide;
+	private: System::Windows::Forms::RadioButton^ radioButtonShow;
+	private: System::Windows::Forms::RadioButton^ radioButtonNone;
+
+
 
 	private:
 		/// <summary>
@@ -52,14 +60,18 @@ namespace SquareWord {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->computerHelp = (gcnew System::Windows::Forms::CheckBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->проПрограмуToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->numSize = (gcnew System::Windows::Forms::NumericUpDown());
 			this->buttonStartGame = (gcnew System::Windows::Forms::Button());
 			this->buttonExitGame = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->radioButtonHide = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonShow = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButtonNone = (gcnew System::Windows::Forms::RadioButton());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSize))->BeginInit();
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -72,19 +84,6 @@ namespace SquareWord {
 			this->label1->Size = System::Drawing::Size(238, 26);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Виберіть розмір поля:";
-			// 
-			// computerHelp
-			// 
-			this->computerHelp->AutoSize = true;
-			this->computerHelp->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->computerHelp->Location = System::Drawing::Point(47, 137);
-			this->computerHelp->Name = L"computerHelp";
-			this->computerHelp->Size = System::Drawing::Size(255, 30);
-			this->computerHelp->TabIndex = 1;
-			this->computerHelp->Text = L"Допомога комп\'ютера";
-			this->computerHelp->UseVisualStyleBackColor = true;
-			this->computerHelp->CheckedChanged += gcnew System::EventHandler(this, &StartForm::computerHelp_CheckedChanged);
 			// 
 			// menuStrip1
 			// 
@@ -122,7 +121,7 @@ namespace SquareWord {
 			// 
 			this->buttonStartGame->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonStartGame->Location = System::Drawing::Point(261, 213);
+			this->buttonStartGame->Location = System::Drawing::Point(255, 287);
 			this->buttonStartGame->Name = L"buttonStartGame";
 			this->buttonStartGame->Size = System::Drawing::Size(108, 59);
 			this->buttonStartGame->TabIndex = 4;
@@ -134,7 +133,7 @@ namespace SquareWord {
 			// 
 			this->buttonExitGame->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonExitGame->Location = System::Drawing::Point(65, 213);
+			this->buttonExitGame->Location = System::Drawing::Point(59, 287);
 			this->buttonExitGame->Name = L"buttonExitGame";
 			this->buttonExitGame->Size = System::Drawing::Size(108, 59);
 			this->buttonExitGame->TabIndex = 4;
@@ -142,15 +141,60 @@ namespace SquareWord {
 			this->buttonExitGame->UseVisualStyleBackColor = true;
 			this->buttonExitGame->Click += gcnew System::EventHandler(this, &StartForm::buttonExitGame_Click);
 			// 
+			// panel1
+			// 
+			this->panel1->Controls->Add(this->radioButtonNone);
+			this->panel1->Controls->Add(this->radioButtonHide);
+			this->panel1->Controls->Add(this->radioButtonShow);
+			this->panel1->Location = System::Drawing::Point(47, 140);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(374, 120);
+			this->panel1->TabIndex = 5;
+			// 
+			// radioButtonHide
+			// 
+			this->radioButtonHide->AutoSize = true;
+			this->radioButtonHide->Location = System::Drawing::Point(12, 75);
+			this->radioButtonHide->Name = L"radioButtonHide";
+			this->radioButtonHide->Size = System::Drawing::Size(218, 17);
+			this->radioButtonHide->TabIndex = 1;
+			this->radioButtonHide->TabStop = true;
+			this->radioButtonHide->Text = L"Відображення тільки правильних букв";
+			this->radioButtonHide->UseVisualStyleBackColor = true;
+			this->radioButtonHide->CheckedChanged += gcnew System::EventHandler(this, &StartForm::radioButtonHide_CheckedChanged);
+			// 
+			// radioButtonShow
+			// 
+			this->radioButtonShow->AutoSize = true;
+			this->radioButtonShow->Location = System::Drawing::Point(12, 42);
+			this->radioButtonShow->Name = L"radioButtonShow";
+			this->radioButtonShow->Size = System::Drawing::Size(198, 17);
+			this->radioButtonShow->TabIndex = 0;
+			this->radioButtonShow->TabStop = true;
+			this->radioButtonShow->Text = L"Підсвічування конфліктуючих букв";
+			this->radioButtonShow->UseVisualStyleBackColor = true;
+			this->radioButtonShow->CheckedChanged += gcnew System::EventHandler(this, &StartForm::radioButtonHelp_CheckedChanged);
+			// 
+			// radioButtonNone
+			// 
+			this->radioButtonNone->AutoSize = true;
+			this->radioButtonNone->Location = System::Drawing::Point(13, 13);
+			this->radioButtonNone->Name = L"radioButtonNone";
+			this->radioButtonNone->Size = System::Drawing::Size(83, 17);
+			this->radioButtonNone->TabIndex = 2;
+			this->radioButtonNone->TabStop = true;
+			this->radioButtonNone->Text = L"Самостійно";
+			this->radioButtonNone->UseVisualStyleBackColor = true;
+			// 
 			// StartForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(447, 301);
+			this->ClientSize = System::Drawing::Size(447, 382);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->buttonExitGame);
 			this->Controls->Add(this->buttonStartGame);
 			this->Controls->Add(this->numSize);
-			this->Controls->Add(this->computerHelp);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
@@ -159,17 +203,23 @@ namespace SquareWord {
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSize))->EndInit();
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+	
+	// Game fields
 	private: System::Media::SoundPlayer^ sound;
 
+	// Game events
 	private: System::Void проПрограмуToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void numSize_ValueChanged(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void computerHelp_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonStartGame_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void radioButtonHelp_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void radioButtonHide_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 };
 }
