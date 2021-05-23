@@ -10,9 +10,9 @@
 ![Example](https://user-images.githubusercontent.com/69078357/114281310-4d49c300-9a46-11eb-910c-91abf95e7b0d.png)  
   
 ## Screenshots ##  
-    
-![Скриншот 01-05-2021 20 18 25](https://user-images.githubusercontent.com/69078357/116789963-924b9d00-aaba-11eb-803c-2a0a444413d4.png)
-  
-![Скриншот 01-05-2021 20 18 47](https://user-images.githubusercontent.com/69078357/116789966-98da1480-aaba-11eb-9e48-1e3c55dfd70c.png)
-  
-  
+    Головне меню:  
+![Скриншот 23-05-2021 13 18 36](https://user-images.githubusercontent.com/69078357/119256530-c998ff80-bbc9-11eb-8496-f5715f2f4f13.png)  
+    Підсвічування конфліктуючих букв:  
+![Скриншот 23-05-2021 13 19 27](https://user-images.githubusercontent.com/69078357/119256562-e7666480-bbc9-11eb-8386-0a6e02cee701.png)  
+    Відображення тільки правильних букв:  
+![Скриншот 23-05-2021 13 20 44](https://user-images.githubusercontent.com/69078357/119256572-0107ac00-bbca-11eb-96a8-5fdded5de499.png)  
