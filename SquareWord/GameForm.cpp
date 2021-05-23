@@ -4,9 +4,6 @@
 GameMap map;
 coord selected_cell;
 
-// flags
-bool sound;
-
 // char to System::String^
 System::String^ SquareWord::GameForm::CharToSysString(char ch)
 {
@@ -17,22 +14,11 @@ System::String^ SquareWord::GameForm::CharToSysString(char ch)
 	return str;
 }
 
-// int to System::String^
-System::String^ SquareWord::GameForm::IntToSysString(int d)
-{
-	char* arr = new char[DIGIT_CAPACITY]();
-	itoa(d, arr, 10);
-	String^ str = gcnew String(arr);
-	delete[] arr;
-	return str;
-}
-
 System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
 	// Initializing sounds
 	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
 	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
-	sound = true;
 	if (size == 5)
 	{
 		this->button1->Text = L"Ñ";
@@ -133,7 +119,7 @@ void SquareWord::GameForm::SetPosition(coord crd, char ch)
 
 void SquareWord::GameForm::ShowConflict(const char &ch)
 {
-	if (mode == GameMode::show) {
+	if (mode == GameMode::showConf) {
 		// clearing previus conflicts
 		for (int i = 0; i < map.get_conflict_size(); i++) {
 			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
@@ -143,14 +129,14 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 
 	map.check(selected_cell.x, selected_cell.y, ch);
 
-	if (mode == GameMode::show) {
+	if (mode == GameMode::showConf) {
 		for (int i = 0; i < map.get_conflict_size(); i++) {
 			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::Red;
 		}
 	}
 
 	if (map.get_conflict_size()) {
-		if (mode == GameMode::show) {
+		if (mode == GameMode::showConf) {
 			labelMessage->Text = "Áóêâà ï³äïàäàº ï³ä îáñòð³ë!";
 			labelMessage->Visible = true;
 		}
@@ -161,7 +147,7 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 	}
 
 	if (map.get_correct_size() == size * size) {
-		if (sound) { soundClick->Play(); }
+		soundClick->Play();
 		MessageBox::Show("Â³òàºìî!", "Ïåðåìîãà");
 		Close();
 	}
@@ -169,8 +155,8 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 
 void SquareWord::GameForm::ButtonSetChar(int i, int j)
 {
-	if (!timer1->Enabled) { timer1->Enabled = true; }
-	if (sound) { soundClick->Play(); }
+	if (!timer->Enabled) { timer->Enabled = true; }
+	soundClick->Play();
 
 	if (map.isConst(selected_cell)) {
 		labelMessage->Text = "Íå ìîæíà çì³íþâàòè ñòàðòîâ³ áóêâè!";
@@ -183,15 +169,13 @@ void SquareWord::GameForm::ButtonSetChar(int i, int j)
 		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
 		ShowConflict(ch);
 		steps++;
-		labelSteps->Text = IntToSysString(steps);
+		labelStepsValue->Text = Convert::ToString(steps);
 	}
 }
 
 System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
+	soundClick->Play();
 
 	if (size == 5) {
 		this->button1->Visible = true;
@@ -230,7 +214,7 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 	selected_cell.x = e->RowIndex;
 	selected_cell.y = e->ColumnIndex;
 
-	if (mode == GameMode::hide) {
+	if (mode == GameMode::hideChars) {
 		char ch;
 		map.check(selected_cell.x, selected_cell.y);
 		for (int i = 0; i < map.get_conf_size(); i++) {
@@ -312,10 +296,8 @@ System::Void SquareWord::GameForm::ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click(Syst
 
 System::Void SquareWord::GameForm::ïðàâèëàÃðèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (sound) {
-		soundClick->Play();
-	}
-	MessageBox::Show("Ïðàâèëà", "Ïðàâèëà");
+	soundClick->Play();
+	MessageBox::Show("Òóò íàïèñàí³ ïðàâèëà", "Ïðàâèëà");
 }
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
@@ -353,7 +335,7 @@ System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System:
 	ButtonSetChar(0, 6);
 }
 
-System::Void SquareWord::GameForm::timer1_Tick(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::timer_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 	s++;
 	
@@ -379,5 +361,5 @@ System::Void SquareWord::GameForm::timer1_Tick(System::Object^ sender, System::E
 		hour = "0" + hour;
 	}
 
-	Time->Text = hour + ":" + min + ":" + sec;
+	labelTimerValue->Text = hour + ":" + min + ":" + sec;
 }

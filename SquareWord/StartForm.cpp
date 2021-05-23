@@ -100,10 +100,10 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     form->steps = form->s = form->m = form->h = 0;
 
     if (radioButtonShowConfChars->Checked) {
-        form->mode = GameMode::show;
+        form->mode = GameMode::showConf;
     }
     else if (radioButtonHideButtons->Checked) {
-        form->mode = GameMode::hide;
+        form->mode = GameMode::hideChars;
     }
     form->ShowDialog();
     // Hide();
