@@ -2,6 +2,7 @@
 
 #include "GameMap.h"
 #include <ctime>
+
 #define DIGIT_CAPACITY 4
 
 enum GameMode { none, show, hide };
@@ -56,10 +57,6 @@ namespace SquareWord {
 	private: System::Windows::Forms::Label^ label1;
 
 	private: System::ComponentModel::IContainer^ components;
-
-	protected:
-
-	protected:
 
 	private:
 		/// <summary>

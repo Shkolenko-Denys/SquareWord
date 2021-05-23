@@ -31,11 +31,8 @@ namespace SquareWord {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
-	protected:
-
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ проПрограмуToolStripMenuItem;
-
 	private: System::Windows::Forms::Button^ buttonStartGame;
 	private: System::Windows::Forms::Button^ buttonExitGame;
 	private: System::Windows::Forms::NumericUpDown^ numSize;
@@ -43,8 +40,6 @@ namespace SquareWord {
 	private: System::Windows::Forms::RadioButton^ radioButtonHide;
 	private: System::Windows::Forms::RadioButton^ radioButtonShow;
 	private: System::Windows::Forms::RadioButton^ radioButtonNone;
-
-
 
 	private:
 		/// <summary>
@@ -66,9 +61,9 @@ namespace SquareWord {
 			this->buttonStartGame = (gcnew System::Windows::Forms::Button());
 			this->buttonExitGame = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->radioButtonNone = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonHide = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButtonShow = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButtonNone = (gcnew System::Windows::Forms::RadioButton());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSize))->BeginInit();
 			this->panel1->SuspendLayout();
@@ -151,12 +146,27 @@ namespace SquareWord {
 			this->panel1->Size = System::Drawing::Size(374, 120);
 			this->panel1->TabIndex = 5;
 			// 
+			// radioButtonNone
+			// 
+			this->radioButtonNone->AutoSize = true;
+			this->radioButtonNone->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->radioButtonNone->Location = System::Drawing::Point(13, 13);
+			this->radioButtonNone->Name = L"radioButtonNone";
+			this->radioButtonNone->Size = System::Drawing::Size(114, 24);
+			this->radioButtonNone->TabIndex = 2;
+			this->radioButtonNone->TabStop = true;
+			this->radioButtonNone->Text = L"Самостійно";
+			this->radioButtonNone->UseVisualStyleBackColor = true;
+			// 
 			// radioButtonHide
 			// 
 			this->radioButtonHide->AutoSize = true;
+			this->radioButtonHide->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->radioButtonHide->Location = System::Drawing::Point(12, 75);
 			this->radioButtonHide->Name = L"radioButtonHide";
-			this->radioButtonHide->Size = System::Drawing::Size(218, 17);
+			this->radioButtonHide->Size = System::Drawing::Size(317, 24);
 			this->radioButtonHide->TabIndex = 1;
 			this->radioButtonHide->TabStop = true;
 			this->radioButtonHide->Text = L"Відображення тільки правильних букв";
@@ -166,25 +176,16 @@ namespace SquareWord {
 			// radioButtonShow
 			// 
 			this->radioButtonShow->AutoSize = true;
+			this->radioButtonShow->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->radioButtonShow->Location = System::Drawing::Point(12, 42);
 			this->radioButtonShow->Name = L"radioButtonShow";
-			this->radioButtonShow->Size = System::Drawing::Size(198, 17);
+			this->radioButtonShow->Size = System::Drawing::Size(290, 24);
 			this->radioButtonShow->TabIndex = 0;
 			this->radioButtonShow->TabStop = true;
 			this->radioButtonShow->Text = L"Підсвічування конфліктуючих букв";
 			this->radioButtonShow->UseVisualStyleBackColor = true;
 			this->radioButtonShow->CheckedChanged += gcnew System::EventHandler(this, &StartForm::radioButtonHelp_CheckedChanged);
-			// 
-			// radioButtonNone
-			// 
-			this->radioButtonNone->AutoSize = true;
-			this->radioButtonNone->Location = System::Drawing::Point(13, 13);
-			this->radioButtonNone->Name = L"radioButtonNone";
-			this->radioButtonNone->Size = System::Drawing::Size(83, 17);
-			this->radioButtonNone->TabIndex = 2;
-			this->radioButtonNone->TabStop = true;
-			this->radioButtonNone->Text = L"Самостійно";
-			this->radioButtonNone->UseVisualStyleBackColor = true;
 			// 
 			// StartForm
 			// 
