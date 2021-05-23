@@ -22,7 +22,9 @@ namespace SquareWord {
 	{
 		String^ sec;
 		String^ min;
-		String^ hour;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::Button^ button8;
+		   String^ hour;
 
 	public:
 		GameForm(void)
@@ -52,7 +54,7 @@ namespace SquareWord {
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ ïðàâèëàÃðèToolStripMenuItem;
+
 	private: System::Windows::Forms::Button^ button6;
 	private: System::Windows::Forms::Button^ button7;
 	private: System::Windows::Forms::Label^ labelMessage;
@@ -90,7 +92,6 @@ namespace SquareWord {
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ïðàâèëàÃðèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->labelMessage = (gcnew System::Windows::Forms::Label());
@@ -99,8 +100,11 @@ namespace SquareWord {
 			this->Time = (gcnew System::Windows::Forms::Label());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->button8 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->BeginInit();
 			this->menuStrip1->SuspendLayout();
+			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dataGridView
@@ -131,7 +135,7 @@ namespace SquareWord {
 			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
 			this->dataGridView->DefaultCellStyle = dataGridViewCellStyle2;
 			this->dataGridView->GridColor = System::Drawing::SystemColors::AppWorkspace;
-			this->dataGridView->Location = System::Drawing::Point(26, 115);
+			this->dataGridView->Location = System::Drawing::Point(17, 116);
 			this->dataGridView->MultiSelect = false;
 			this->dataGridView->Name = L"dataGridView";
 			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -155,7 +159,7 @@ namespace SquareWord {
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(418, 115);
+			this->button1->Location = System::Drawing::Point(28, 32);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 75);
 			this->button1->TabIndex = 4;
@@ -166,7 +170,7 @@ namespace SquareWord {
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(418, 201);
+			this->button2->Location = System::Drawing::Point(28, 113);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 75);
 			this->button2->TabIndex = 4;
@@ -177,7 +181,7 @@ namespace SquareWord {
 			// 
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button3->Location = System::Drawing::Point(418, 291);
+			this->button3->Location = System::Drawing::Point(28, 194);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 75);
 			this->button3->TabIndex = 4;
@@ -188,7 +192,7 @@ namespace SquareWord {
 			// 
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button4->Location = System::Drawing::Point(514, 115);
+			this->button4->Location = System::Drawing::Point(109, 32);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 75);
 			this->button4->TabIndex = 4;
@@ -199,7 +203,7 @@ namespace SquareWord {
 			// 
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button5->Location = System::Drawing::Point(514, 201);
+			this->button5->Location = System::Drawing::Point(109, 113);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(75, 75);
 			this->button5->TabIndex = 4;
@@ -208,37 +212,27 @@ namespace SquareWord {
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem,
-					this->ïðàâèëàÃðèToolStripMenuItem
-			});
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(616, 33);
+			this->menuStrip1->Size = System::Drawing::Size(621, 35);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem
 			// 
-			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
+			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14, System::Drawing::FontStyle::Bold));
+			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->ForeColor = System::Drawing::Color::Navy;
 			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Name = L"ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem";
-			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Size = System::Drawing::Size(218, 29);
-			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Text = L"Ïîâåðíóòèñÿ äî ìåíþ";
+			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Size = System::Drawing::Size(107, 31);
+			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Text = L"Ïðàâèëà";
 			this->ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click);
-			// 
-			// ïðàâèëàÃðèToolStripMenuItem
-			// 
-			this->ïðàâèëàÃðèToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14));
-			this->ïðàâèëàÃðèToolStripMenuItem->Name = L"ïðàâèëàÃðèToolStripMenuItem";
-			this->ïðàâèëàÃðèToolStripMenuItem->Size = System::Drawing::Size(134, 29);
-			this->ïðàâèëàÃðèToolStripMenuItem->Text = L"Ïðàâèëà ãðè";
-			this->ïðàâèëàÃðèToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::ïðàâèëàÃðèToolStripMenuItem_Click);
 			// 
 			// button6
 			// 
 			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button6->Location = System::Drawing::Point(514, 291);
+			this->button6->Location = System::Drawing::Point(109, 194);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 75);
 			this->button6->TabIndex = 4;
@@ -249,7 +243,7 @@ namespace SquareWord {
 			// 
 			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button7->Location = System::Drawing::Point(465, 384);
+			this->button7->Location = System::Drawing::Point(69, 275);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(75, 75);
 			this->button7->TabIndex = 4;
@@ -259,49 +253,54 @@ namespace SquareWord {
 			// labelMessage
 			// 
 			this->labelMessage->AutoSize = true;
-			this->labelMessage->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->labelMessage->Font = (gcnew System::Drawing::Font(L"Calibri", 16, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->labelMessage->ForeColor = System::Drawing::Color::Red;
-			this->labelMessage->Location = System::Drawing::Point(22, 490);
+			this->labelMessage->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->labelMessage->Location = System::Drawing::Point(12, 485);
 			this->labelMessage->Name = L"labelMessage";
-			this->labelMessage->Size = System::Drawing::Size(94, 24);
+			this->labelMessage->Size = System::Drawing::Size(144, 27);
 			this->labelMessage->TabIndex = 6;
-			this->labelMessage->Text = L"message";
+			this->labelMessage->Text = L"Error Message";
+			this->labelMessage->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->labelMessage->Visible = false;
 			// 
 			// labelSteps
 			// 
 			this->labelSteps->AutoSize = true;
-			this->labelSteps->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->labelSteps->Font = (gcnew System::Drawing::Font(L"Consolas", 16, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->labelSteps->Location = System::Drawing::Point(555, 522);
+			this->labelSteps->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->labelSteps->Location = System::Drawing::Point(202, 58);
 			this->labelSteps->Name = L"labelSteps";
-			this->labelSteps->Size = System::Drawing::Size(24, 26);
+			this->labelSteps->Size = System::Drawing::Size(48, 26);
 			this->labelSteps->TabIndex = 7;
-			this->labelSteps->Text = L"0";
+			this->labelSteps->Text = L"000";
+			this->labelSteps->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Cambria", 16, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(384, 524);
+			this->label1->Location = System::Drawing::Point(12, 57);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(156, 24);
+			this->label1->Size = System::Drawing::Size(184, 26);
 			this->label1->TabIndex = 8;
 			this->label1->Text = L"Ê³ëüê³ñòü êðîê³â:";
 			// 
 			// Time
 			// 
 			this->Time->AutoSize = true;
-			this->Time->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Time->Font = (gcnew System::Drawing::Font(L"Consolas", 16, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->Time->Location = System::Drawing::Point(461, 56);
+			this->Time->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->Time->Location = System::Drawing::Point(489, 58);
 			this->Time->Name = L"Time";
-			this->Time->Size = System::Drawing::Size(80, 24);
+			this->Time->Size = System::Drawing::Size(108, 26);
 			this->Time->TabIndex = 9;
 			this->Time->Text = L"00:00:00";
-			this->Time->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->Time->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
 			// timer1
 			// 
@@ -311,31 +310,59 @@ namespace SquareWord {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Cambria", 16, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(404, 56);
+			this->label2->Location = System::Drawing::Point(380, 57);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(42, 20);
+			this->label2->Size = System::Drawing::Size(91, 26);
 			this->label2->TabIndex = 10;
-			this->label2->Text = L"×àñ:";
+			this->label2->Text = L"×àñ ãðè:";
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->button4);
+			this->groupBox1->Controls->Add(this->button1);
+			this->groupBox1->Controls->Add(this->button2);
+			this->groupBox1->Controls->Add(this->button3);
+			this->groupBox1->Controls->Add(this->button5);
+			this->groupBox1->Controls->Add(this->button6);
+			this->groupBox1->Controls->Add(this->button7);
+			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Cambria", 14, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->groupBox1->ForeColor = System::Drawing::Color::Navy;
+			this->groupBox1->Location = System::Drawing::Point(385, 102);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(210, 364);
+			this->groupBox1->TabIndex = 11;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Êëàâ³àòóðà áóêâ";
+			// 
+			// button8
+			// 
+			this->button8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->button8->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 16, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button8->ForeColor = System::Drawing::Color::Maroon;
+			this->button8->Location = System::Drawing::Point(385, 485);
+			this->button8->Name = L"button8";
+			this->button8->Size = System::Drawing::Size(210, 51);
+			this->button8->TabIndex = 12;
+			this->button8->Text = L"Çàâåðøèòè ãðó";
+			this->button8->UseVisualStyleBackColor = false;
 			// 
 			// GameForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(616, 567);
+			this->ClientSize = System::Drawing::Size(621, 548);
+			this->Controls->Add(this->button8);
+			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->Time);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->labelSteps);
 			this->Controls->Add(this->labelMessage);
-			this->Controls->Add(this->button7);
-			this->Controls->Add(this->button6);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
@@ -345,6 +372,7 @@ namespace SquareWord {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
+			this->groupBox1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -352,6 +380,7 @@ namespace SquareWord {
 #pragma endregion
 	// Game fields
 	public: int size;
+	public: int steps;
 	public: int s;
 	public: int m;
 	public: int h;

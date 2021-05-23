@@ -3,7 +3,6 @@
 // common data
 GameMap map;
 coord selected_cell;
-int steps = 0;
 
 // flags
 bool sound;
@@ -164,7 +163,7 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 	if (map.get_correct_size() == size * size) {
 		if (sound) { soundClick->Play(); }
 		MessageBox::Show("Вітаємо!", "Перемога");
-		steps = 0;
+		Close();
 	}
 }
 
