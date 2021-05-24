@@ -400,7 +400,7 @@ namespace SquareWord
     private: System::Media::SoundPlayer^ soundWin;
     private: GameMap* map;
     private: Stopwatch* stopwatch;
-    private: coord *selected_cell;
+    private: coord* selected_cell;
 
            // Game methods
     private: System::String^ CharToSysString(char);
@@ -431,5 +431,5 @@ namespace SquareWord
 
     private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e);
     private: System::Void GameForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
-};
+    };
 }

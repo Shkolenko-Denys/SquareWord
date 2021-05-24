@@ -325,7 +325,7 @@ namespace SquareWord
     private: System::Media::SoundPlayer^ soundClick;
     private: System::Media::SoundPlayer^ backgroundMusic;
 
-        // Game events
+           // Game events
     private: System::Void StartForm_Load(System::Object^ sender, System::EventArgs^ e);
 
     private: System::Void InstructionToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
@@ -346,5 +346,5 @@ namespace SquareWord
     private: System::Void buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void StartForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
     private: System::Void backgroundWorkerMusic_DoWork(System::Object^ sender, System::ComponentModel::DoWorkEventArgs^ e);
-};
+    };
 }
