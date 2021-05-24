@@ -122,6 +122,17 @@ void SquareWord::GameForm::ShowAllButtons()
 	}
 }
 
+void SquareWord::GameForm::HideAllButtons()
+{
+	this->button1->Visible = false;
+	this->button2->Visible = false;
+	this->button3->Visible = false;
+	this->button4->Visible = false;
+	this->button5->Visible = false;
+	this->button6->Visible = false;
+	this->button7->Visible = false;
+}
+
 void SquareWord::GameForm::HideButton(char ch)
 {
 	if (size == 5) {
@@ -299,9 +310,14 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 	if (mode == GameMode::hideChars) {
 		char ch;
 		map->check(*selected_cell);
-		for (int i = 0; i < map->get_conf_size(); i++) {
-			ch = map->get_conf_char(i);
-			HideButton(ch);
+		if (map->isConst(*selected_cell)) {
+			HideAllButtons();
+		}
+		else {
+			for (int i = 0; i < map->get_conf_size(); i++) {
+				ch = map->get_conf_char(i);
+				HideButton(ch);
+			}
 		}
 	}
 }

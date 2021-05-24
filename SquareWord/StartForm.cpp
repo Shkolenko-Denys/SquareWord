@@ -49,12 +49,12 @@ System::Void SquareWord::StartForm::InstructionToolStripMenuItem_Click(System::O
 
 System::Void SquareWord::StartForm::SoundToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
 }
 
 System::Void SquareWord::StartForm::melody1ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody1.wav");
     soundInterface = false;
     backgroundWorkerMusic->RunWorkerAsync(1);
@@ -62,7 +62,7 @@ System::Void SquareWord::StartForm::melody1ToolStripMenuItem_Click(System::Objec
 
 System::Void SquareWord::StartForm::melody2ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody2.wav");
     soundInterface = false;
     backgroundWorkerMusic->RunWorkerAsync(1);
@@ -70,7 +70,7 @@ System::Void SquareWord::StartForm::melody2ToolStripMenuItem_Click(System::Objec
 
 System::Void SquareWord::StartForm::melody3ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody3.wav");
     soundInterface = false;
     backgroundWorkerMusic->RunWorkerAsync(1);
@@ -78,7 +78,7 @@ System::Void SquareWord::StartForm::melody3ToolStripMenuItem_Click(System::Objec
 
 System::Void SquareWord::StartForm::melody4ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody4.wav");
     soundInterface = false;
     backgroundWorkerMusic->RunWorkerAsync(1);
@@ -86,29 +86,33 @@ System::Void SquareWord::StartForm::melody4ToolStripMenuItem_Click(System::Objec
 
 System::Void SquareWord::StartForm::nomelodyToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
     soundInterface = true;
-    if (soundInterface) { soundClick->Play(); }
+    try {
+        soundClick->Play();
+    }
+    catch (...) {
+        soundInterface = false;
+    }
 }
 
 System::Void SquareWord::StartForm::numSize_ValueChanged(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
 }
 
 System::Void SquareWord::StartForm::radioButtonNone_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
 }
 
 System::Void SquareWord::StartForm::radioButtonShowConfChars_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
 }
 
 System::Void SquareWord::StartForm::radioButtonHideButtons_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
 }
 
 System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender, System::EventArgs^ e)
@@ -133,7 +137,7 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
 
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
     if (MessageBox::Show("Ви дійсно хочете вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
         Application::ExitThread();
     }
@@ -141,7 +145,7 @@ System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender,
 
 System::Void SquareWord::StartForm::StartForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
     if (MessageBox::Show("Ви дійсно хочете вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
         Application::ExitThread();
     }

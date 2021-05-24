@@ -4,8 +4,6 @@
 #include "GameMap.h"
 #include "Stopwatch.h"
 
-#define DIGIT_CAPACITY 4
-
 enum GameMode { none, showConf, hideChars };
 
 namespace SquareWord
@@ -410,6 +408,7 @@ namespace SquareWord
     private: void SetStartGameGrid();
     private: void InitializeButtons();
     private: void ShowAllButtons();
+    private: void HideAllButtons();
     private: void HideButton(char);
     private: void ButtonSetChar(int, int);
     private: void FindConflict(const char&);
