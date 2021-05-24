@@ -11,5 +11,15 @@
   
 ## Screenshots ##  
   
-![Скриншот 24-04-2021 12 39 51](https://user-images.githubusercontent.com/69078357/115954521-356c4780-a4fa-11eb-8c86-f2c08da6e640.png)
+  Головне меню:  
+  
+![Скриншот 23-05-2021 13 18 36](https://user-images.githubusercontent.com/69078357/119256530-c998ff80-bbc9-11eb-8496-f5715f2f4f13.png)  
 
+   Підсвічування конфліктуючих букв:  
+    
+![Скриншот 23-05-2021 13 19 27](https://user-images.githubusercontent.com/69078357/119256562-e7666480-bbc9-11eb-8386-0a6e02cee701.png)  
+  
+  
+   Відображення тільки правильних букв:  
+    
+![Скриншот 23-05-2021 13 20 44](https://user-images.githubusercontent.com/69078357/119256572-0107ac00-bbca-11eb-96a8-5fdded5de499.png)  
