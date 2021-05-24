@@ -290,6 +290,16 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 	}
 }
 
+System::Void SquareWord::GameForm::goBackToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	soundClick->Play();
+	if (MessageBox::Show("Ви дійсно хочете повернутись до меню? Прогрес гри буде втрачено!", "Увага!", MessageBoxButtons::YesNo) == Windows::Forms::DialogResult::Yes) {
+		StartForm^ form = gcnew StartForm();
+		form->Show();
+		this->Close();
+	}
+}
+
 System::Void SquareWord::GameForm::rulesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	soundClick->Play();

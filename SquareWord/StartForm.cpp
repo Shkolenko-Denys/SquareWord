@@ -112,5 +112,7 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
     soundClick->Play();
-    Application::Exit();
+    if (MessageBox::Show("Ви дійсно хочете вийти з програми?", "Увага!", MessageBoxButtons::YesNo) == Windows::Forms::DialogResult::Yes) {
+        Application::Exit();
+    }
 }

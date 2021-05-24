@@ -1,5 +1,6 @@
 #pragma once
 
+#include "StartForm.h"
 #include "GameMap.h"
 #include "Timer.h"
 
@@ -37,6 +38,7 @@ namespace SquareWord
         }
 
     private: System::Windows::Forms::MenuStrip^ menuStrip;
+    private: System::Windows::Forms::ToolStripMenuItem^ goBackToolStripMenuItem;
     private: System::Windows::Forms::ToolStripMenuItem^ rulesToolStripMenuItem;
 
     private: System::Windows::Forms::Label^ labelSteps;
@@ -76,6 +78,7 @@ namespace SquareWord
             this->components = (gcnew System::ComponentModel::Container());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->menuStrip = (gcnew System::Windows::Forms::MenuStrip());
+            this->goBackToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->rulesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->labelSteps = (gcnew System::Windows::Forms::Label());
             this->labelStepsValue = (gcnew System::Windows::Forms::Label());
@@ -100,12 +103,24 @@ namespace SquareWord
             // 
             // menuStrip
             // 
-            this->menuStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->rulesToolStripMenuItem });
+            this->menuStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+                this->goBackToolStripMenuItem,
+                    this->rulesToolStripMenuItem
+            });
             this->menuStrip->Location = System::Drawing::Point(0, 0);
             this->menuStrip->Name = L"menuStrip";
             this->menuStrip->Size = System::Drawing::Size(621, 35);
             this->menuStrip->TabIndex = 5;
             this->menuStrip->Text = L"menuStrip";
+            // 
+            // goBackToolStripMenuItem
+            // 
+            this->goBackToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14, System::Drawing::FontStyle::Bold));
+            this->goBackToolStripMenuItem->ForeColor = System::Drawing::Color::Navy;
+            this->goBackToolStripMenuItem->Name = L"goBackToolStripMenuItem";
+            this->goBackToolStripMenuItem->Size = System::Drawing::Size(237, 31);
+            this->goBackToolStripMenuItem->Text = L"Повернутися до меню";
+            this->goBackToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::goBackToolStripMenuItem_Click);
             // 
             // rulesToolStripMenuItem
             // 
@@ -389,6 +404,7 @@ namespace SquareWord
            // Game events
     private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
     private: System::Void dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+    private: System::Void goBackToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void rulesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
     private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
