@@ -57,7 +57,7 @@ System::Void SquareWord::StartForm::melody1ToolStripMenuItem_Click(System::Objec
     if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody1.wav");
     soundInterface = false;
-    backgroundWorkerMusic->RunWorkerAsync(1);
+    backgroundWorkerMusic->RunWorkerAsync(1); // start music
 }
 
 System::Void SquareWord::StartForm::melody2ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
