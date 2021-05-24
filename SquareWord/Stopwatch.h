@@ -2,14 +2,14 @@
 
 #include <string>
 
-class Timer
+class Stopwatch
 {
 private:
     int s, m, h;
     std::string sec, min, hour, result;
 
 public:
-    Timer();
+    Stopwatch();
     void clock();
     System::String^ get_time() const;
 };

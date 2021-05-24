@@ -92,11 +92,10 @@ System::Void SquareWord::StartForm::radioButtonHideButtons_CheckedChanged(System
 System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
     soundClick->Play();
-    int size = Convert::ToInt32(numSize->Value);
 
     // Create GameForm 
     GameForm^ form = gcnew GameForm();
-    form->size = size;
+    form->size = Convert::ToInt32(numSize->Value);;
     form->steps = 0;
 
     if (radioButtonShowConfChars->Checked) {

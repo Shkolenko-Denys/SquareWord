@@ -1,13 +1,13 @@
-#include "Timer.h"
+#include "Stopwatch.h"
 
-Timer::Timer()
+Stopwatch::Stopwatch()
 {
     s = m = h = 0;
     sec = min = hour = "00";
     result = "00:00:00";
 }
 
-void Timer::clock()
+void Stopwatch::clock()
 {
 	s++;
 
@@ -36,7 +36,7 @@ void Timer::clock()
 	result = hour + ":" + min + ":" + sec;
 }
 
-System::String^ Timer::get_time() const
+System::String^ Stopwatch::get_time() const
 {
 	System::String^ sysStr = gcnew System::String(result.c_str());
 	return sysStr;

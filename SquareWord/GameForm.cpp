@@ -1,10 +1,5 @@
 #include "GameForm.h"
 
-// common data
-GameMap map;
-Timer stopwatch;
-coord selected_cell;
-
 // char to System::String^
 System::String^ SquareWord::GameForm::CharToSysString(char ch)
 {
@@ -15,16 +10,7 @@ System::String^ SquareWord::GameForm::CharToSysString(char ch)
 	return str;
 }
 
-void SquareWord::GameForm::StartGame()
-{
-	// Data initialization
-	map.SetMap(size);
-
-	CreateGameGrid(map.get_size()); // creating a playing field
-	SetStartGameGrid(map.get_size()); // set starting parameters
-}
-
-void SquareWord::GameForm::CreateGameGrid(int size)
+void SquareWord::GameForm::CreateGameGrid()
 {
 	// clear grid
 	dataGridView->Rows->Clear();
@@ -60,13 +46,13 @@ void SquareWord::GameForm::CreateGameGrid(int size)
 	}
 }
 
-void SquareWord::GameForm::SetStartGameGrid(int size)
+void SquareWord::GameForm::SetStartGameGrid()
 {
 	char ch;
-	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 16, FontStyle::Bold);
+	System::Drawing::Font^ font = gcnew System::Drawing::Font("Microsoft Sans Serif", 20, FontStyle::Bold);
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
-			if (ch = map.get_value(i, j)) {
+			if (ch = map->get_value(i, j)) {
 				dataGridView->Rows[i]->Cells[j]->Value = CharToSysString(ch);
 				dataGridView->Rows[i]->Cells[j]->Style->Font = font;
 			}
@@ -74,72 +60,8 @@ void SquareWord::GameForm::SetStartGameGrid(int size)
 	}
 }
 
-void SquareWord::GameForm::SetPosition(coord crd, char ch)
+void SquareWord::GameForm::InitializeButtons()
 {
-	map.set_position(crd.x, crd.y, ch);
-}
-
-void SquareWord::GameForm::ShowConflict(const char &ch)
-{
-	if (mode == GameMode::showConf) {
-		// clearing previus conflicts
-		for (int i = 0; i < map.get_conflict_size(); i++) {
-			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
-		}
-		labelMessage->Visible = false;
-	}
-
-	map.check(selected_cell.x, selected_cell.y, ch);
-
-	if (mode == GameMode::showConf) {
-		for (int i = 0; i < map.get_conflict_size(); i++) {
-			dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::Red;
-		}
-	}
-
-	if (map.get_conflict_size()) {
-		if (mode == GameMode::showConf) {
-			labelMessage->Text = "Буква підпадає під обстріл!";
-			labelMessage->Visible = true;
-		}
-		map.incorrect(selected_cell);
-	}
-	else {
-		map.correct(selected_cell);
-	}
-
-	if (map.get_correct_size() == size * size) {
-		soundClick->Play();
-		MessageBox::Show("Вітаємо!", "Перемога");
-		Close();
-	}
-}
-
-void SquareWord::GameForm::ButtonSetChar(int i, int j)
-{
-	if (!timer->Enabled) { timer->Enabled = true; }
-	soundClick->Play();
-
-	if (map.isConst(selected_cell)) {
-		labelMessage->Text = "Не можна змінювати стартові букви!";
-		labelMessage->Visible = true;
-	}
-	else {
-		// Make a move
-		char ch = map.get_value(i, j);
-		SetPosition(selected_cell, ch);
-		dataGridView->Rows[selected_cell.x]->Cells[selected_cell.y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
-		steps++;
-		labelStepsValue->Text = Convert::ToString(steps);
-	}
-}
-
-System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
-{
-	// Initializing sounds
-	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
-	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
 	if (size == 5)
 	{
 		this->button1->Text = L"С";
@@ -170,14 +92,10 @@ System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System:
 		this->button6->Text = L"О";
 		this->button7->Text = L"К";
 	}
-
-	StartGame();
 }
 
-System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+void SquareWord::GameForm::ShowAllButtons()
 {
-	soundClick->Play();
-
 	if (size == 5) {
 		this->button1->Visible = true;
 		this->button2->Visible = true;
@@ -202,90 +120,179 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 		this->button6->Visible = true;
 		this->button7->Visible = true;
 	}
+}
+
+void SquareWord::GameForm::HideButton(char ch)
+{
+	if (size == 5) {
+		switch (ch) {
+		case 'С':
+			this->button1->Visible = false;
+			break;
+		case 'Л':
+			this->button2->Visible = false;
+			break;
+		case 'Е':
+			this->button3->Visible = false;
+			break;
+		case 'З':
+			this->button4->Visible = false;
+			break;
+		case 'А':
+			this->button5->Visible = false;
+			break;
+		}
+	}
+	else if (size == 6) {
+		switch (ch) {
+		case 'Г':
+			this->button1->Visible = false;
+			break;
+		case 'Л':
+			this->button2->Visible = false;
+			break;
+		case 'О':
+			this->button3->Visible = false;
+			break;
+		case 'Б':
+			this->button4->Visible = false;
+			break;
+		case 'У':
+			this->button5->Visible = false;
+			break;
+		case 'С':
+			this->button6->Visible = false;
+			break;
+		}
+	}
+	else if (size == 7) {
+		switch (ch) {
+		case 'Р':
+			this->button1->Visible = false;
+			break;
+		case 'И':
+			this->button2->Visible = false;
+			break;
+		case 'С':
+			this->button3->Visible = false;
+			break;
+		case 'У':
+			this->button4->Visible = false;
+			break;
+		case 'Н':
+			this->button5->Visible = false;
+			break;
+		case 'О':
+			this->button6->Visible = false;
+			break;
+		case 'К':
+			this->button7->Visible = false;
+			break;
+		}
+	}
+}
+
+void SquareWord::GameForm::ButtonSetChar(int i, int j)
+{
+	if (!timer->Enabled) { timer->Enabled = true; }
+
+	if (map->isConst(*selected_cell)) {
+		soundIncorrect->Play();
+		labelMessage->Text = "Не можна змінювати стартові букви!";
+		labelMessage->Visible = true;
+	}
+	else {
+		soundClick->Play();
+		// Make a move
+		char ch = map->get_value(i, j);
+		map->set_position(*selected_cell, ch);
+		dataGridView->Rows[selected_cell->x]->Cells[selected_cell->y]->Value = CharToSysString(ch);
+		ShowConflict(ch);
+		steps++;
+		labelStepsValue->Text = Convert::ToString(steps);
+	}
+}
+
+void SquareWord::GameForm::ShowConflict(const char &ch)
+{
+	if (mode == GameMode::showConf) {
+		// clearing previus conflicts
+		for (int i = 0; i < map->get_conflict_size(); i++) {
+			dataGridView->Rows[map->get_conflict_row(i)]->Cells[map->get_conflict_col(i)]->Style->BackColor = Color::White;
+		}
+		labelMessage->Visible = false;
+	}
+
+	map->check(*selected_cell, ch);
+
+	if (mode == GameMode::showConf) {
+		for (int i = 0; i < map->get_conflict_size(); i++) {
+			dataGridView->Rows[map->get_conflict_row(i)]->Cells[map->get_conflict_col(i)]->Style->BackColor = Color::Red;
+		}
+	}
+
+	if (map->get_conflict_size()) {
+		if (mode == GameMode::showConf) {
+			soundIncorrect->Play();
+			labelMessage->Text = "Буква підпадає під обстріл!";
+			labelMessage->Visible = true;
+			dataGridView->Rows[selected_cell->x]->Cells[selected_cell->y]->Style->BackColor = Color::Magenta;
+		}
+		map->incorrect(*selected_cell);
+	}
+	else {
+		dataGridView->Rows[selected_cell->x]->Cells[selected_cell->y]->Style->BackColor = Color::White;
+		map->correct(*selected_cell);
+	}
+
+	if (map->get_correct_size() == size * size) {
+		soundClick->Play();
+		MessageBox::Show("Вітаємо!", "Перемога");
+		Close();
+	}
+}
+
+System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
+{
+	map = new GameMap(size);
+	stopwatch = new Stopwatch;
+	selected_cell = new coord;
+	// Initializing sounds
+	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
+	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
+	InitializeButtons();
+
+	// Data initialization
+	SquareWord::GameForm::map->SetMap(size);
+
+	CreateGameGrid(); // creating a playing field
+	SetStartGameGrid(); // set starting parameters
+}
+
+System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+{
+	soundClick->Play();
+
+	ShowAllButtons();
 
 	// clearing previus conflicts
-	for (int i = 0; i < map.get_conflict_size(); i++) {
-		dataGridView->Rows[map.get_conflict_row(i)]->Cells[map.get_conflict_col(i)]->Style->BackColor = Color::White;
+	for (int i = 0; i < map->get_conflict_size(); i++) {
+		dataGridView->Rows[map->get_conflict_row(i)]->Cells[map->get_conflict_col(i)]->Style->BackColor = Color::White;
 	}
 	labelMessage->Visible = false;
 
 	auto senderGrid = (DataGridView^)sender; // transform the obj into a table
 
 	// Remember the indices of the selected cell
-	selected_cell.x = e->RowIndex;
-	selected_cell.y = e->ColumnIndex;
+	selected_cell->x = e->RowIndex;
+	selected_cell->y = e->ColumnIndex;
 
 	if (mode == GameMode::hideChars) {
 		char ch;
-		map.check(selected_cell.x, selected_cell.y);
-		for (int i = 0; i < map.get_conf_size(); i++) {
-			ch = map.get_conf_char(i);
-			if (size == 5) {
-				switch (ch) {
-				case 'С':
-					this->button1->Visible = false;
-					break;
-				case 'Л':
-					this->button2->Visible = false;
-					break;
-				case 'Е':
-					this->button3->Visible = false;
-					break;
-				case 'З':
-					this->button4->Visible = false;
-					break;
-				case 'А':
-					this->button5->Visible = false;
-					break;
-				}
-			}
-			else if (size == 6) {
-				switch (ch) {
-				case 'Г':
-					this->button1->Visible = false;
-					break;
-				case 'Л':
-					this->button2->Visible = false;
-					break;
-				case 'О':
-					this->button3->Visible = false;
-					break;
-				case 'Б':
-					this->button4->Visible = false;
-					break;
-				case 'У':
-					this->button5->Visible = false;
-					break;
-				case 'С':
-					this->button6->Visible = false;
-					break;
-				}
-			}
-			else if (size == 7) {
-				switch (ch) {
-				case 'Р':
-					this->button1->Visible = false;
-					break;
-				case 'И':
-					this->button2->Visible = false;
-					break;
-				case 'С':
-					this->button3->Visible = false;
-					break;
-				case 'У':
-					this->button4->Visible = false;
-					break;
-				case 'Н':
-					this->button5->Visible = false;
-					break;
-				case 'О':
-					this->button6->Visible = false;
-					break;
-				case 'К':
-					this->button7->Visible = false;
-					break;
-				}
-			}
+		map->check(*selected_cell);
+		for (int i = 0; i < map->get_conf_size(); i++) {
+			ch = map->get_conf_char(i);
+			HideButton(ch);
 		}
 	}
 }
@@ -351,8 +358,8 @@ System::Void SquareWord::GameForm::buttonFinishGame_Click(System::Object^ sender
 
 System::Void SquareWord::GameForm::timer_Tick(System::Object^ sender, System::EventArgs^ e)
 {
-	stopwatch.clock();
-	labelTimerValue->Text = stopwatch.get_time();
+	stopwatch->clock();
+	labelTimerValue->Text = stopwatch->get_time();
 }
 
 System::Void SquareWord::GameForm::GameForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)

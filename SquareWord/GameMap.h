@@ -21,14 +21,14 @@ private:
 	std::set<char> conf_chars;
 
 public:
-	GameMap();
+	GameMap(int);
 	~GameMap();
 	void SetMap(int);
 
-	void check(int, int, char);
-	void check(int, int);
+	void check(const coord&, char);
+	void check(const coord&);
 
-	void set_position(int, int, char);
+	void set_position(const coord&, char);
 	bool isConst(const coord&);
 
 	int get_size() const { return size; }

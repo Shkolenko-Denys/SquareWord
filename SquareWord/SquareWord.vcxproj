@@ -123,7 +123,7 @@
     <ClCompile Include="GameForm.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="StartForm.cpp" />
-    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Stopwatch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameForm.h">
@@ -133,7 +133,7 @@
     <ClInclude Include="StartForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Stopwatch.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GameForm.resx">

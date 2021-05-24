@@ -2,7 +2,7 @@
 
 #include "StartForm.h"
 #include "GameMap.h"
-#include "Timer.h"
+#include "Stopwatch.h"
 
 #define DIGIT_CAPACITY 4
 
@@ -32,6 +32,9 @@ namespace SquareWord
         /// Clean up any resources being used.
         /// </summary>
         ~GameForm() {
+            delete map;
+            delete stopwatch;
+            delete selected_cell;
             if (components) {
                 delete components;
             }
@@ -76,7 +79,7 @@ namespace SquareWord
         void InitializeComponent()
         {
             this->components = (gcnew System::ComponentModel::Container());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->menuStrip = (gcnew System::Windows::Forms::MenuStrip());
             this->goBackToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->rulesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -190,15 +193,16 @@ namespace SquareWord
             this->dataGridView->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
             this->dataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView->ColumnHeadersVisible = false;
-            dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-            dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Window;
-            dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Arial", 14, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+            this->dataGridView->Cursor = System::Windows::Forms::Cursors::Default;
+            dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Window;
+            dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Arial", 14, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
-            dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Red;
-            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-            dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-            this->dataGridView->DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+            dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+            this->dataGridView->DefaultCellStyle = dataGridViewCellStyle1;
             this->dataGridView->GridColor = System::Drawing::SystemColors::AppWorkspace;
             this->dataGridView->Location = System::Drawing::Point(17, 116);
             this->dataGridView->MultiSelect = false;
@@ -230,6 +234,19 @@ namespace SquareWord
             this->groupBoxChars->TabIndex = 11;
             this->groupBoxChars->TabStop = false;
             this->groupBoxChars->Text = L"Клавіатура букв";
+            // 
+            // button4
+            // 
+            this->button4->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
+            this->button4->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(204)));
+            this->button4->ForeColor = System::Drawing::Color::Black;
+            this->button4->Location = System::Drawing::Point(109, 32);
+            this->button4->Name = L"button4";
+            this->button4->Size = System::Drawing::Size(75, 75);
+            this->button4->TabIndex = 4;
+            this->button4->UseVisualStyleBackColor = false;
+            this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
             // 
             // button1
             // 
@@ -269,19 +286,6 @@ namespace SquareWord
             this->button3->TabIndex = 4;
             this->button3->UseVisualStyleBackColor = false;
             this->button3->Click += gcnew System::EventHandler(this, &GameForm::button3_Click);
-            // 
-            // button4
-            // 
-            this->button4->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
-            this->button4->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(204)));
-            this->button4->ForeColor = System::Drawing::Color::Black;
-            this->button4->Location = System::Drawing::Point(109, 32);
-            this->button4->Name = L"button4";
-            this->button4->Size = System::Drawing::Size(75, 75);
-            this->button4->TabIndex = 4;
-            this->button4->UseVisualStyleBackColor = false;
-            this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
             // 
             // button5
             // 
@@ -389,19 +393,24 @@ namespace SquareWord
 #pragma endregion
 
         // Game fields
-    public: int size, steps;
+    public: int size;
+    public: int steps;
     public: enum GameMode mode;
     private: System::Media::SoundPlayer^ soundClick;
     private: System::Media::SoundPlayer^ soundIncorrect;
+    private: GameMap* map;
+    private: Stopwatch* stopwatch;
+    private: coord *selected_cell;
 
            // Game methods
     private: System::String^ CharToSysString(char);
-    private: void StartGame();
-    private: void CreateGameGrid(int);
-    private: void SetStartGameGrid(int);
-    private: void SetPosition(coord, char);
-    private: void ShowConflict(const char&);
+    private: void CreateGameGrid();
+    private: void SetStartGameGrid();
+    private: void InitializeButtons();
+    private: void ShowAllButtons();
+    private: void HideButton(char);
     private: void ButtonSetChar(int, int);
+    private: void ShowConflict(const char&);
 
            // Game events
     private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
