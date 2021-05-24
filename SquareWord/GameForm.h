@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameMap.h"
+#include "Timer.h"
 
 #define DIGIT_CAPACITY 4
 
@@ -36,7 +37,7 @@ namespace SquareWord
         }
 
     private: System::Windows::Forms::MenuStrip^ menuStrip;
-    private: System::Windows::Forms::ToolStripMenuItem^ RulesToolStripMenuItem;
+    private: System::Windows::Forms::ToolStripMenuItem^ rulesToolStripMenuItem;
 
     private: System::Windows::Forms::Label^ labelSteps;
     private: System::Windows::Forms::Label^ labelStepsValue;
@@ -72,48 +73,48 @@ namespace SquareWord
         /// </summary>
         void InitializeComponent()
         {
+            this->components = (gcnew System::ComponentModel::Container());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->menuStrip = (gcnew System::Windows::Forms::MenuStrip());
-            this->RulesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+            this->rulesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->labelSteps = (gcnew System::Windows::Forms::Label());
             this->labelStepsValue = (gcnew System::Windows::Forms::Label());
             this->labelTime = (gcnew System::Windows::Forms::Label());
             this->labelTimerValue = (gcnew System::Windows::Forms::Label());
-            this->components = (gcnew System::ComponentModel::Container());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->dataGridView = (gcnew System::Windows::Forms::DataGridView());
             this->groupBoxChars = (gcnew System::Windows::Forms::GroupBox());
+            this->button4 = (gcnew System::Windows::Forms::Button());
             this->button1 = (gcnew System::Windows::Forms::Button());
             this->button2 = (gcnew System::Windows::Forms::Button());
             this->button3 = (gcnew System::Windows::Forms::Button());
-            this->button4 = (gcnew System::Windows::Forms::Button());
             this->button5 = (gcnew System::Windows::Forms::Button());
             this->button6 = (gcnew System::Windows::Forms::Button());
             this->button7 = (gcnew System::Windows::Forms::Button());
             this->labelMessage = (gcnew System::Windows::Forms::Label());
             this->buttonFinishGame = (gcnew System::Windows::Forms::Button());
             this->timer = (gcnew System::Windows::Forms::Timer(this->components));
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->BeginInit();
             this->menuStrip->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->BeginInit();
             this->groupBoxChars->SuspendLayout();
             this->SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this->menuStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->RulesToolStripMenuItem });
+            this->menuStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->rulesToolStripMenuItem });
             this->menuStrip->Location = System::Drawing::Point(0, 0);
-            this->menuStrip->Name = L"menuStrip1";
+            this->menuStrip->Name = L"menuStrip";
             this->menuStrip->Size = System::Drawing::Size(621, 35);
             this->menuStrip->TabIndex = 5;
             this->menuStrip->Text = L"menuStrip";
             // 
-            // RulesToolStripMenuItem
+            // rulesToolStripMenuItem
             // 
-            this->RulesToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14, System::Drawing::FontStyle::Bold));
-            this->RulesToolStripMenuItem->ForeColor = System::Drawing::Color::Navy;
-            this->RulesToolStripMenuItem->Name = L"RulesToolStripMenuItem";
-            this->RulesToolStripMenuItem->Size = System::Drawing::Size(107, 31);
-            this->RulesToolStripMenuItem->Text = L"Ïðàâèëà";
-            this->RulesToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click);
+            this->rulesToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14, System::Drawing::FontStyle::Bold));
+            this->rulesToolStripMenuItem->ForeColor = System::Drawing::Color::Navy;
+            this->rulesToolStripMenuItem->Name = L"rulesToolStripMenuItem";
+            this->rulesToolStripMenuItem->Size = System::Drawing::Size(107, 31);
+            this->rulesToolStripMenuItem->Text = L"Ïðàâèëà";
+            this->rulesToolStripMenuItem->Click += gcnew System::EventHandler(this, &GameForm::rulesToolStripMenuItem_Click);
             // 
             // labelSteps
             // 
@@ -215,6 +216,19 @@ namespace SquareWord
             this->groupBoxChars->TabStop = false;
             this->groupBoxChars->Text = L"Êëàâ³àòóðà áóêâ";
             // 
+            // button4
+            // 
+            this->button4->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
+            this->button4->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(204)));
+            this->button4->ForeColor = System::Drawing::Color::Black;
+            this->button4->Location = System::Drawing::Point(109, 32);
+            this->button4->Name = L"button4";
+            this->button4->Size = System::Drawing::Size(75, 75);
+            this->button4->TabIndex = 4;
+            this->button4->UseVisualStyleBackColor = false;
+            this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
+            // 
             // button1
             // 
             this->button1->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
@@ -253,19 +267,6 @@ namespace SquareWord
             this->button3->TabIndex = 4;
             this->button3->UseVisualStyleBackColor = false;
             this->button3->Click += gcnew System::EventHandler(this, &GameForm::button3_Click);
-            // 
-            // button4
-            // 
-            this->button4->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
-            this->button4->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(204)));
-            this->button4->ForeColor = System::Drawing::Color::Black;
-            this->button4->Location = System::Drawing::Point(109, 32);
-            this->button4->Name = L"button4";
-            this->button4->Size = System::Drawing::Size(75, 75);
-            this->button4->TabIndex = 4;
-            this->button4->UseVisualStyleBackColor = false;
-            this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
             // 
             // button5
             // 
@@ -335,6 +336,7 @@ namespace SquareWord
             this->buttonFinishGame->TabIndex = 12;
             this->buttonFinishGame->Text = L"Çàâåðøèòè ãðó";
             this->buttonFinishGame->UseVisualStyleBackColor = false;
+            this->buttonFinishGame->Click += gcnew System::EventHandler(this, &GameForm::buttonFinishGame_Click);
             // 
             // timer
             // 
@@ -359,20 +361,18 @@ namespace SquareWord
             this->Name = L"GameForm";
             this->Text = L"Ãîëîâîëîìêà SquareWord";
             this->Load += gcnew System::EventHandler(this, &GameForm::GameForm_Load);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->EndInit();
             this->menuStrip->ResumeLayout(false);
             this->menuStrip->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->EndInit();
             this->groupBoxChars->ResumeLayout(false);
             this->ResumeLayout(false);
             this->PerformLayout();
+
         }
 #pragma endregion
 
         // Game fields
-    public: int size, steps, s, m, h;
-    public: String^ sec;
-    public: String^ min;
-    public: String^ hour;
+    public: int size, steps;
     public: enum GameMode mode;
     private: System::Media::SoundPlayer^ soundClick;
     private: System::Media::SoundPlayer^ soundIncorrect;
@@ -389,8 +389,7 @@ namespace SquareWord
            // Game events
     private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
     private: System::Void dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
-    private: System::Void ïîâåðíóòèñÿÄîÌåíþToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-    private: System::Void ïðàâèëàÃðèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+    private: System::Void rulesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
     private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e);
@@ -399,6 +398,8 @@ namespace SquareWord
     private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e);
+
+    private: System::Void buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e);
-    };
+};
 }

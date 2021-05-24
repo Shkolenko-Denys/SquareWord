@@ -1,6 +1,7 @@
 #include "GameMap.h"
 
-bool coord::operator== (const coord& obj) const {
+bool coord::operator== (const coord& obj) const
+{
 	return (x == obj.x) && (y == obj.y);
 }
 
@@ -191,7 +192,8 @@ bool GameMap::isConst(const coord &crd)
 	return std::find(const_chars.begin(), const_chars.end(), crd) != const_chars.end();
 }
 
-char GameMap::get_conf_char(int i) const {
+char GameMap::get_conf_char(int i) const
+{
 	std::set<char>::iterator it = conf_chars.begin();
 	std::advance(it, i);
 	return *it;

@@ -97,7 +97,7 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     // Create GameForm 
     GameForm^ form = gcnew GameForm();
     form->size = size;
-    form->steps = form->s = form->m = form->h = 0;
+    form->steps = 0;
 
     if (radioButtonShowConfChars->Checked) {
         form->mode = GameMode::showConf;
@@ -105,8 +105,8 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     else if (radioButtonHideButtons->Checked) {
         form->mode = GameMode::hideChars;
     }
-    form->ShowDialog();
-    // Hide();
+    form->Show();
+    this->Hide();
 }
 
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)

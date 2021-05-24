@@ -2,6 +2,7 @@
 
 // common data
 GameMap map;
+Timer stopwatch;
 coord selected_cell;
 
 // char to System::String^
@@ -12,45 +13,6 @@ System::String^ SquareWord::GameForm::CharToSysString(char ch)
 	String^ str = gcnew String(arr);
 	delete[] arr;
 	return str;
-}
-
-System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
-{
-	// Initializing sounds
-	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
-	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
-	if (size == 5)
-	{
-		this->button1->Text = L"С";
-		this->button2->Text = L"Л";
-		this->button3->Text = L"Е";
-		this->button4->Text = L"З";
-		this->button5->Text = L"А";
-		this->button6->Visible = false;
-		this->button7->Visible = false;
-	}
-	else if (size == 6)
-	{
-		this->button1->Text = L"Г";
-		this->button2->Text = L"Л";
-		this->button3->Text = L"О";
-		this->button4->Text = L"Б";
-		this->button5->Text = L"У";
-		this->button6->Text = L"С";
-		this->button7->Visible = false;
-	}
-	else if (size == 7)
-	{
-		this->button1->Text = L"Р";
-		this->button2->Text = L"И";
-		this->button3->Text = L"С";
-		this->button4->Text = L"У";
-		this->button5->Text = L"Н";
-		this->button6->Text = L"О";
-		this->button7->Text = L"К";
-	}
-
-	StartGame();
 }
 
 void SquareWord::GameForm::StartGame()
@@ -173,6 +135,45 @@ void SquareWord::GameForm::ButtonSetChar(int i, int j)
 	}
 }
 
+System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System::EventArgs^ e)
+{
+	// Initializing sounds
+	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
+	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
+	if (size == 5)
+	{
+		this->button1->Text = L"С";
+		this->button2->Text = L"Л";
+		this->button3->Text = L"Е";
+		this->button4->Text = L"З";
+		this->button5->Text = L"А";
+		this->button6->Visible = false;
+		this->button7->Visible = false;
+	}
+	else if (size == 6)
+	{
+		this->button1->Text = L"Г";
+		this->button2->Text = L"Л";
+		this->button3->Text = L"О";
+		this->button4->Text = L"Б";
+		this->button5->Text = L"У";
+		this->button6->Text = L"С";
+		this->button7->Visible = false;
+	}
+	else if (size == 7)
+	{
+		this->button1->Text = L"Р";
+		this->button2->Text = L"И";
+		this->button3->Text = L"С";
+		this->button4->Text = L"У";
+		this->button5->Text = L"Н";
+		this->button6->Text = L"О";
+		this->button7->Text = L"К";
+	}
+
+	StartGame();
+}
+
 System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
 	soundClick->Play();
@@ -289,12 +290,7 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 	}
 }
 
-System::Void SquareWord::GameForm::повернутисяДоМенюToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Close();
-}
-
-System::Void SquareWord::GameForm::правилаГриToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void SquareWord::GameForm::rulesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	soundClick->Play();
 	MessageBox::Show("Тут написані правила", "Правила");
@@ -335,31 +331,16 @@ System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System:
 	ButtonSetChar(0, 6);
 }
 
+System::Void SquareWord::GameForm::buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	soundClick->Play();
+	if (MessageBox::Show("Ви дійсно хочете завершити гру і вийти з програми?", "Увага!", MessageBoxButtons::YesNo) == Windows::Forms::DialogResult::Yes) {
+		Application::Exit();
+	}
+}
+
 System::Void SquareWord::GameForm::timer_Tick(System::Object^ sender, System::EventArgs^ e)
 {
-	s++;
-	
-	if (s == 60) {
-		s = 0;
-		m++;
-	}
-	if (m == 60) {
-		m = 0;
-		h++;
-	}
-	
-	sec = Convert::ToString(s);
-	if (s < 10) {
-		sec = "0" + sec;
-	}
-	min = Convert::ToString(m);
-	if (m < 10) {
-		min = "0" + min;
-	}
-	hour = Convert::ToString(h);
-	if (h < 10) {
-		hour = "0" + hour;
-	}
-
-	labelTimerValue->Text = hour + ":" + min + ":" + sec;
+	stopwatch.clock();
+	labelTimerValue->Text = stopwatch.get_time();
 }
