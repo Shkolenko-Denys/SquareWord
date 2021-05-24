@@ -4,6 +4,7 @@
 #include "GameMap.h"
 #include "Stopwatch.h"
 
+// computer help modes
 enum GameMode { none, showConf, hideChars };
 
 namespace SquareWord
@@ -394,8 +395,8 @@ namespace SquareWord
     public: int size;
     public: int steps;
     public: enum GameMode mode;
-    public: bool soundInterface;
-    private: System::Media::SoundPlayer^ soundClick;
+    public: bool soundInterface; // sound of keys and victory at the end of the game
+    private: System::Media::SoundPlayer^ soundClick; // sound of key
     private: System::Media::SoundPlayer^ soundIncorrect;
     private: System::Media::SoundPlayer^ soundWin;
     private: GameMap* map;

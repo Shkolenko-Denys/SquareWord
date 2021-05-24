@@ -321,8 +321,8 @@ namespace SquareWord
 #pragma endregion
 
         // Game fields
-    private: bool soundInterface;
-    private: System::Media::SoundPlayer^ soundClick;
+    private: bool soundInterface; // key sound (flag)
+    private: System::Media::SoundPlayer^ soundClick; // key sound (value)
     private: System::Media::SoundPlayer^ backgroundMusic;
 
            // Game events

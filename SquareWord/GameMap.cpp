@@ -22,9 +22,10 @@ GameMap::GameMap(int size)
 
     // create matrix
     this->size = size;
-    map = new char* [size];
+    map = new char* [size]; // create rows
     for (int i = 0; i < size; ++i) {
-        map[i] = new char[size](); // zeroing
+        // create columns and zeroing
+        map[i] = new char[size]();
     }
 }
 
@@ -103,6 +104,7 @@ void GameMap::SetMap()
 
 void GameMap::check(const coord& crd, char ch)
 {
+    // clear conflicting coords of another letter
     conflict_chars.clear();
 
     // check vertically
@@ -152,6 +154,7 @@ void GameMap::check(const coord& crd, char ch)
 
 void GameMap::check(const coord& crd)
 {
+    // clear conflicting coords of another letter
     conflict_chars.clear();
 
     // check vertically
@@ -203,6 +206,7 @@ bool GameMap::isConst(const coord& crd)
 
 char GameMap::get_conflict_char(int i) const
 {
+    // returns the character by iterator
     std::set<char>::iterator it = conflict_chars.begin();
     std::advance(it, i);
     return *it;

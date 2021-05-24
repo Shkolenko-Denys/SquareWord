@@ -10,7 +10,7 @@ private:
 
 public:
     Stopwatch();
-    void clock();
+    void clock(); // + 1 sec
     System::String^ get_time() const;
 };
 

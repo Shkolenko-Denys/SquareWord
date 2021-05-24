@@ -11,11 +11,11 @@ void Stopwatch::clock()
 {
     s++;
 
-    if (s == 60) {
+    if (s == 60) { // if a minute has passed
         s = 0;
         m++;
     }
-    if (m == 60) {
+    if (m == 60) { // if a hour has passed
         m = 0;
         h++;
     }
@@ -38,6 +38,7 @@ void Stopwatch::clock()
 
 System::String^ Stopwatch::get_time() const
 {
+    // convert std::string to SysString:
     System::String^ sysStr = gcnew System::String(result.c_str());
     return sysStr;
 }

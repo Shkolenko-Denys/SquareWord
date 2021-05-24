@@ -15,7 +15,7 @@ void main(array<String^>^ args) {
 System::Void SquareWord::StartForm::StartForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
     soundInterface = false;
-    radioButtonNone->Checked = true;
+    radioButtonNone->Checked = true; // by default the user plays without help
 
     // Initializing sounds
     soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
@@ -56,7 +56,7 @@ System::Void SquareWord::StartForm::melody1ToolStripMenuItem_Click(System::Objec
 {
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody1.wav");
-    soundInterface = false;
+    soundInterface = false; // turn off key sound
     backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
@@ -64,7 +64,7 @@ System::Void SquareWord::StartForm::melody2ToolStripMenuItem_Click(System::Objec
 {
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody2.wav");
-    soundInterface = false;
+    soundInterface = false; // turn off key sound
     backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
@@ -72,7 +72,7 @@ System::Void SquareWord::StartForm::melody3ToolStripMenuItem_Click(System::Objec
 {
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody3.wav");
-    soundInterface = false;
+    soundInterface = false; // turn off key sound
     backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
@@ -80,17 +80,17 @@ System::Void SquareWord::StartForm::melody4ToolStripMenuItem_Click(System::Objec
 {
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody4.wav");
-    soundInterface = false;
+    soundInterface = false; // turn off key sound
     backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
 System::Void SquareWord::StartForm::nomelodyToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    soundInterface = true;
+    soundInterface = true; // turn on key sound
     try { // if the sound cannot be played, then we prohibit it
         soundClick->Play();
     }
-    catch (...) {
+    catch (...) { // disable all interface sounds
         soundInterface = false;
     }
 }
@@ -131,8 +131,8 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
     else if (radioButtonHideButtons->Checked) {
         form->mode = GameMode::hideChars;
     }
-    form->Show();
-    this->Hide();
+    form->Show(); // open Game Form
+    this->Hide(); // hide current form
 }
 
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)
@@ -150,11 +150,11 @@ System::Void SquareWord::StartForm::StartForm_FormClosing(System::Object^ sender
         Application::ExitThread();
     }
     else {
-        e->Cancel = true;
+        e->Cancel = true; // cancel exiting the program
     }
 }
 
 System::Void SquareWord::StartForm::backgroundWorkerMusic_DoWork(System::Object^ sender, System::ComponentModel::DoWorkEventArgs^ e)
 {
-    backgroundMusic->PlayLooping();
+    backgroundMusic->PlayLooping(); // loop music on background
 }
