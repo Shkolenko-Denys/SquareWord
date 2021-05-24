@@ -50,6 +50,7 @@ namespace SquareWord
 
     private: System::Windows::Forms::Button^ buttonStartGame;
     private: System::Windows::Forms::Button^ buttonExitGame;
+    private: System::ComponentModel::BackgroundWorker^ backgroundWorkerMusic;
 
     private:
         /// <summary>
@@ -80,6 +81,7 @@ namespace SquareWord
             this->radioButtonHideButtons = (gcnew System::Windows::Forms::RadioButton());
             this->buttonStartGame = (gcnew System::Windows::Forms::Button());
             this->buttonExitGame = (gcnew System::Windows::Forms::Button());
+            this->backgroundWorkerMusic = (gcnew System::ComponentModel::BackgroundWorker());
             this->menuStrip->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSize))->BeginInit();
             this->groupBoxGameMode->SuspendLayout();
@@ -285,6 +287,10 @@ namespace SquareWord
             this->buttonExitGame->UseVisualStyleBackColor = false;
             this->buttonExitGame->Click += gcnew System::EventHandler(this, &StartForm::buttonExitGame_Click);
             // 
+            // backgroundWorkerMusic
+            // 
+            this->backgroundWorkerMusic->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &StartForm::backgroundWorkerMusic_DoWork);
+            // 
             // StartForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -315,7 +321,7 @@ namespace SquareWord
 #pragma endregion
 
         // Game fields
-    private: bool sound;
+    private: bool soundInterface;
     private: System::Media::SoundPlayer^ soundClick;
     private: System::Media::SoundPlayer^ backgroundMusic;
 
@@ -339,5 +345,6 @@ namespace SquareWord
     private: System::Void buttonStartGame_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void StartForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
+    private: System::Void backgroundWorkerMusic_DoWork(System::Object^ sender, System::ComponentModel::DoWorkEventArgs^ e);
 };
 }

@@ -197,12 +197,12 @@ void SquareWord::GameForm::ButtonSetChar(int i, int j)
 	if (!timer->Enabled) { timer->Enabled = true; }
 
 	if (map->isConst(*selected_cell)) {
-		soundIncorrect->Play();
+		if (soundInterface) { soundIncorrect->Play(); }
 		labelMessage->Text = "Не можна змінювати стартові букви!";
 		labelMessage->Visible = true;
 	}
 	else {
-		soundClick->Play();
+		if (soundInterface) { soundClick->Play(); }
 		// Make a move
 		char ch = map->get_value(i, j);
 		map->set_position(*selected_cell, ch);
@@ -233,7 +233,7 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 
 	if (map->get_conflict_size()) {
 		if (mode == GameMode::showConf) {
-			soundIncorrect->Play();
+			if (soundInterface) { soundIncorrect->Play(); }
 			labelMessage->Text = "Буква підпадає під обстріл!";
 			labelMessage->Visible = true;
 			dataGridView->Rows[selected_cell->x]->Cells[selected_cell->y]->Style->BackColor = Color::Magenta;
@@ -246,9 +246,11 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 	}
 
 	if (map->get_correct_size() == size * size) {
-		soundClick->Play();
+		soundWin->Play();
 		MessageBox::Show("Вітаємо!", "Перемога");
-		Close();
+		StartForm^ form = gcnew StartForm();
+		form->Show();
+		this->Hide();
 	}
 }
 
@@ -260,6 +262,7 @@ System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System:
 	// Initializing sounds
 	soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
 	soundIncorrect = gcnew System::Media::SoundPlayer("..\\Resources\\incorrect.wav");
+	soundWin = gcnew System::Media::SoundPlayer("..\\Resources\\win.wav");
 	InitializeButtons();
 
 	// Data initialization
@@ -271,7 +274,7 @@ System::Void SquareWord::GameForm::GameForm_Load(System::Object^ sender, System:
 
 System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
-	soundClick->Play();
+	if (soundInterface) { soundClick->Play(); }
 
 	ShowAllButtons();
 
@@ -299,7 +302,7 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 
 System::Void SquareWord::GameForm::goBackToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	soundClick->Play();
+	if (soundInterface) { soundClick->Play(); }
 	if (MessageBox::Show("Ви дійсно хочете повернутись до меню? Прогрес гри буде втрачено!", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
 		StartForm^ form = gcnew StartForm();
 		form->Show();
@@ -309,10 +312,24 @@ System::Void SquareWord::GameForm::goBackToolStripMenuItem_Click(System::Object^
 
 System::Void SquareWord::GameForm::rulesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	soundClick->Play();
-	MessageBox::Show("Заповніть порожні клітинки буквами з числа наявних так, щоб в кожному горизонтальному,"
-		"вертикальному ряду і в діагоналях квадрата не було двох однакових букв, тобто кожна буква зустрічалася"
-		"б по одному разу.", "Правила");
+	if (soundInterface) { soundClick->Play(); }
+	MessageBox::Show("Скверворд – це квадрат, розділений на клітинки, з записаними в ньому певним чином словами. "
+		"При цьому більшість клітинок порожні.\n"
+		"    Завдання полягає в тому, щоб заповнити ці порожні клітинки буквами з числа наявних так, щоб в кожному "
+		"ГОРИЗОНТАЛЬНОМУ, ВЕРТИКАЛЬНОМУ РЯДУ І В ДІАГОНАЛЯХ КВАДРАТА не було ДВОХ однакових букв, "
+		"тобто кожна буква зустрічалася б ПО ОДНОМУ РАЗУ.\n"
+		"    Якщо ви будете вирішувати скверворд навмання, підбором, "
+		"то ваше терпіння вичерпається набагато раніше, ніж буде записана остання буква. "
+		"Основний підхід до вирішення завдань такого типу полягає в знаходженні клітинки, для якої буде встановлена "
+		"безсумнівність розташування тієї чи іншої літери.\n\n"
+		"*************************************************************************\n\n"
+		"Але як прийти до висновку, що в даній клітині повинна стояти якась певна буква?\n\n"
+		"*************************************************************************\n\n"
+		"    Вибираємо клітку і для неї проводимо чіткий, логічний аналіз, встановлюючи кількість букв, які "
+		"можна вписати в цю клітку. Якщо можлива буква одна дуже добре, вписуємо і все. "
+		"Дві і більше – переходимо до іншої клітки, і так до тих пір, поки пошук не увінчається успіхом.\n"
+		"    Краще всього починати аналіз в місцях \"кущіння\" букв, потрапляючи під «перехресний обстріл» рядів і діагоналей.",
+		"Правила");
 }
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
@@ -352,7 +369,7 @@ System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System:
 
 System::Void SquareWord::GameForm::buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	soundClick->Play();
+	if (soundInterface) { soundClick->Play(); }
 	if (MessageBox::Show("Ви дійсно хочете завершити гру і вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
 		Application::ExitThread();
 	}
@@ -366,7 +383,7 @@ System::Void SquareWord::GameForm::timer_Tick(System::Object^ sender, System::Ev
 
 System::Void SquareWord::GameForm::GameForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
 {
-	soundClick->Play();
+	if (soundInterface) { soundClick->Play(); }
 	if (MessageBox::Show("Ви дійсно хочете завершити гру і вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
 		Application::ExitThread();
 	}

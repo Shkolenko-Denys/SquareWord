@@ -396,8 +396,10 @@ namespace SquareWord
     public: int size;
     public: int steps;
     public: enum GameMode mode;
+    public: bool soundInterface;
     private: System::Media::SoundPlayer^ soundClick;
     private: System::Media::SoundPlayer^ soundIncorrect;
+    private: System::Media::SoundPlayer^ soundWin;
     private: GameMap* map;
     private: Stopwatch* stopwatch;
     private: coord *selected_cell;
