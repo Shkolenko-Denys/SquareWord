@@ -207,30 +207,32 @@ void SquareWord::GameForm::ButtonSetChar(int i, int j)
 		char ch = map->get_value(i, j);
 		map->set_position(*selected_cell, ch);
 		dataGridView->Rows[selected_cell->x]->Cells[selected_cell->y]->Value = CharToSysString(ch);
-		ShowConflict(ch);
+		if (mode == GameMode::showConf) {
+			FindConflict(ch);
+		}
 		steps++;
 		labelStepsValue->Text = Convert::ToString(steps);
+		CheckMap();
 	}
 }
 
-void SquareWord::GameForm::ShowConflict(const char &ch)
+void SquareWord::GameForm::FindConflict(const char &ch)
 {
-	if (mode == GameMode::showConf) {
-		// clearing previus conflicts
-		for (int i = 0; i < map->get_conflict_size(); i++) {
-			dataGridView->Rows[map->get_conflict_row(i)]->Cells[map->get_conflict_col(i)]->Style->BackColor = Color::White;
-		}
-		labelMessage->Visible = false;
+	// clearing previus conflicts
+	for (int i = 0; i < map->get_conflict_size(); i++) {
+		dataGridView->Rows[map->get_conflict_row(i)]->Cells[map->get_conflict_col(i)]->Style->BackColor = Color::White;
 	}
+	labelMessage->Visible = false;
 
 	map->check(*selected_cell, ch);
 
-	if (mode == GameMode::showConf) {
-		for (int i = 0; i < map->get_conflict_size(); i++) {
-			dataGridView->Rows[map->get_conflict_row(i)]->Cells[map->get_conflict_col(i)]->Style->BackColor = Color::Red;
-		}
+	for (int i = 0; i < map->get_conflict_size(); i++) {
+		dataGridView->Rows[map->get_conflict_row(i)]->Cells[map->get_conflict_col(i)]->Style->BackColor = Color::Red;
 	}
+}
 
+void SquareWord::GameForm::CheckMap()
+{
 	if (map->get_conflict_size()) {
 		if (mode == GameMode::showConf) {
 			if (soundInterface) { soundIncorrect->Play(); }
@@ -247,7 +249,11 @@ void SquareWord::GameForm::ShowConflict(const char &ch)
 
 	if (map->get_correct_size() == size * size) {
 		soundWin->Play();
-		MessageBox::Show("Вітаємо!", "Перемога");
+		MessageBox::Show("Вітаємо !!!\n" +
+			"Ви вирішили цю головоломку за" +
+			steps + " кроків і загальний час гри: " +
+			stopwatch->get_time(),
+			"Перемога");
 		StartForm^ form = gcnew StartForm();
 		form->Show();
 		this->Hide();

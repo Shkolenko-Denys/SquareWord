@@ -412,7 +412,8 @@ namespace SquareWord
     private: void ShowAllButtons();
     private: void HideButton(char);
     private: void ButtonSetChar(int, int);
-    private: void ShowConflict(const char&);
+    private: void FindConflict(const char&);
+    private: void CheckMap();
 
            // Game events
     private: System::Void GameForm_Load(System::Object^ sender, System::EventArgs^ e);
