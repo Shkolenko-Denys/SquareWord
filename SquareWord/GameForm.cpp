@@ -310,7 +310,9 @@ System::Void SquareWord::GameForm::goBackToolStripMenuItem_Click(System::Object^
 System::Void SquareWord::GameForm::rulesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	soundClick->Play();
-	MessageBox::Show("Тут написані правила", "Правила");
+	MessageBox::Show("Заповніть порожні клітинки буквами з числа наявних так, щоб в кожному горизонтальному,"
+		"вертикальному ряду і в діагоналях квадрата не було двох однакових букв, тобто кожна буква зустрічалася"
+		"б по одному разу.", "Правила");
 }
 
 System::Void SquareWord::GameForm::button1_Click(System::Object^ sender, System::EventArgs^ e)
