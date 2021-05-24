@@ -19,6 +19,7 @@ bool coord::operator< (const coord& obj) const
 GameMap::GameMap(int size)
 {
 	this->size = size;
+
 	// create matrix
 	this->size = size;
 	map = new char* [size];
@@ -35,7 +36,7 @@ GameMap::~GameMap()
 	delete[] map;
 }
 
-void GameMap::SetMap(int size)
+void GameMap::SetMap()
 {
 	if (size == 5)
 	{
@@ -89,11 +90,12 @@ void GameMap::SetMap(int size)
 		map[6][6] = 'Ñ';
 	}
 
+	// mark the initial letters as const (add to const and correct vectors)
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			if (map[i][j]) {
-				const_chars.push_back({ i, j });
-				correct_chars.insert({i, j});
+				const_ch_coord.push_back({ i, j });
+				correct_ch_coord.insert({i, j});
 			}
 		}
 	}
@@ -102,24 +104,27 @@ void GameMap::SetMap(int size)
 void GameMap::check(const coord &crd, char ch)
 {
 	conflict_chars.clear();
+
 	// check vertically
 	for (int i = 0; i < size; ++i) {
 		if (i == crd.x) {
 			continue;
 		}
 		if (map[i][crd.y] == ch) {
-			conflict_chars.push_back({ i, crd.y });
+			conflict_ch_coord.push_back({ i, crd.y });
 		}
 	}
+
 	// check horizontally
 	for (int j = 0; j < size; ++j) {
 		if (j == crd.y) {
 			continue;
 		}
 		if (map[crd.x][j] == ch) {
-			conflict_chars.push_back({ crd.x, j });
+			conflict_ch_coord.push_back({ crd.x, j });
 		}
 	}
+
 	if (crd.x == crd.y) {
 		// main diagonal check
 		for (int m = 0; m < size; m++) {
@@ -127,10 +132,11 @@ void GameMap::check(const coord &crd, char ch)
 				continue;
 			}
 			if (map[m][m] == ch) {
-				conflict_chars.push_back({ m, m });
+				conflict_ch_coord.push_back({ m, m });
 			}
 		}
 	}
+
 	if (crd.x == size - crd.y - 1) {
 		// side diagonal check
 		for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
@@ -138,7 +144,7 @@ void GameMap::check(const coord &crd, char ch)
 				continue;
 			}
 			if (map[s1][s2] == ch) {
-				conflict_chars.push_back({ s1, s2 });
+				conflict_ch_coord.push_back({ s1, s2 });
 			}
 		}
 	}
@@ -146,37 +152,41 @@ void GameMap::check(const coord &crd, char ch)
 
 void GameMap::check(const coord &crd)
 {
-	conf_chars.clear();
+	conflict_chars.clear();
+
 	// check vertically
 	for (int i = 0; i < size; ++i) {
 		if (i == crd.x) {
 			continue;
 		}
-		conf_chars.insert(map[i][crd.y]);
+		conflict_chars.insert(map[i][crd.y]);
 	}
+
 	// check horizontally
 	for (int j = 0; j < size; ++j) {
 		if (j == crd.y) {
 			continue;
 		}
-		conf_chars.insert(map[crd.x][j]);
+		conflict_chars.insert(map[crd.x][j]);
 	}
+
 	if (crd.x == crd.y) {
 		// main diagonal check
 		for (int m = 0; m < size; m++) {
 			if (m == crd.x) {
 				continue;
 			}
-			conf_chars.insert(map[m][m]);
+			conflict_chars.insert(map[m][m]);
 		}
 	}
+
 	if (crd.x == size - crd.y - 1) {
 		// side diagonal check
 		for (int s1 = size - 1, s2 = 0; s1 >= 0 && s2 < size; s1--, s2++) {
 			if (s1 == crd.x && s2 == crd.y) {
 				continue;
 			}
-			conf_chars.insert(map[s1][s2]);
+			conflict_chars.insert(map[s1][s2]);
 		}
 	}
 }
@@ -188,12 +198,12 @@ void GameMap::set_position(const coord& crd, char ch)
 
 bool GameMap::isConst(const coord &crd)
 {
-	return std::find(const_chars.begin(), const_chars.end(), crd) != const_chars.end();
+	return std::find(const_ch_coord.begin(), const_ch_coord.end(), crd) != const_ch_coord.end();
 }
 
-char GameMap::get_conf_char(int i) const
+char GameMap::get_conflict_char(int i) const
 {
-	std::set<char>::iterator it = conf_chars.begin();
+	std::set<char>::iterator it = conflict_chars.begin();
 	std::advance(it, i);
 	return *it;
 }

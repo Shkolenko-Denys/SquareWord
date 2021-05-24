@@ -20,12 +20,12 @@ System::Void SquareWord::StartForm::StartForm_Load(System::Object^ sender, Syste
     // Initializing sounds
     soundClick = gcnew System::Media::SoundPlayer("..\\Resources\\click.wav");
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody1.wav");
-    backgroundWorkerMusic->RunWorkerAsync(1);
+    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
 System::Void SquareWord::StartForm::InstructionToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
     MessageBox::Show("*************************************************************************\n"
         "Â³òàºìî Âàñ ó Ãð³-Ãîëîâîëîìö³ SquareWord\n"
         "*************************************************************************\n\n"
@@ -57,7 +57,7 @@ System::Void SquareWord::StartForm::melody1ToolStripMenuItem_Click(System::Objec
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody1.wav");
     soundInterface = false;
-    backgroundWorkerMusic->RunWorkerAsync(1);
+    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
 System::Void SquareWord::StartForm::melody2ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -65,7 +65,7 @@ System::Void SquareWord::StartForm::melody2ToolStripMenuItem_Click(System::Objec
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody2.wav");
     soundInterface = false;
-    backgroundWorkerMusic->RunWorkerAsync(1);
+    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
 System::Void SquareWord::StartForm::melody3ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -73,7 +73,7 @@ System::Void SquareWord::StartForm::melody3ToolStripMenuItem_Click(System::Objec
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody3.wav");
     soundInterface = false;
-    backgroundWorkerMusic->RunWorkerAsync(1);
+    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
 System::Void SquareWord::StartForm::melody4ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -81,13 +81,13 @@ System::Void SquareWord::StartForm::melody4ToolStripMenuItem_Click(System::Objec
     if (soundInterface) { soundClick->Play(); }
     backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody4.wav");
     soundInterface = false;
-    backgroundWorkerMusic->RunWorkerAsync(1);
+    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
 }
 
 System::Void SquareWord::StartForm::nomelodyToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
     soundInterface = true;
-    try {
+    try { // if the sound cannot be played, then we prohibit it
         soundClick->Play();
     }
     catch (...) {
@@ -117,7 +117,7 @@ System::Void SquareWord::StartForm::radioButtonHideButtons_CheckedChanged(System
 
 System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { if (soundInterface) { soundClick->Play(); } }
+    if (soundInterface) { soundClick->Play(); }
 
     // Create GameForm 
     GameForm^ form = gcnew GameForm();
