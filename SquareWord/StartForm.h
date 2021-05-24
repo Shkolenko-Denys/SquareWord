@@ -299,7 +299,9 @@ namespace SquareWord
             this->Controls->Add(this->menuStrip);
             this->MainMenuStrip = this->menuStrip;
             this->Name = L"StartForm";
+            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             this->Text = L"Головоломка SquareWord";
+            this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &StartForm::StartForm_FormClosing);
             this->Load += gcnew System::EventHandler(this, &StartForm::StartForm_Load);
             this->menuStrip->ResumeLayout(false);
             this->menuStrip->PerformLayout();
@@ -336,5 +338,6 @@ namespace SquareWord
 
     private: System::Void buttonStartGame_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e);
+    private: System::Void StartForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }

@@ -293,10 +293,10 @@ System::Void SquareWord::GameForm::dataGridView_CellContentClick(System::Object^
 System::Void SquareWord::GameForm::goBackToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	soundClick->Play();
-	if (MessageBox::Show("Ви дійсно хочете повернутись до меню? Прогрес гри буде втрачено!", "Увага!", MessageBoxButtons::YesNo) == Windows::Forms::DialogResult::Yes) {
+	if (MessageBox::Show("Ви дійсно хочете повернутись до меню? Прогрес гри буде втрачено!", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
 		StartForm^ form = gcnew StartForm();
 		form->Show();
-		this->Close();
+		this->Hide();
 	}
 }
 
@@ -344,8 +344,8 @@ System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System:
 System::Void SquareWord::GameForm::buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	soundClick->Play();
-	if (MessageBox::Show("Ви дійсно хочете завершити гру і вийти з програми?", "Увага!", MessageBoxButtons::YesNo) == Windows::Forms::DialogResult::Yes) {
-		Application::Exit();
+	if (MessageBox::Show("Ви дійсно хочете завершити гру і вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
+		Application::ExitThread();
 	}
 }
 
@@ -353,4 +353,15 @@ System::Void SquareWord::GameForm::timer_Tick(System::Object^ sender, System::Ev
 {
 	stopwatch.clock();
 	labelTimerValue->Text = stopwatch.get_time();
+}
+
+System::Void SquareWord::GameForm::GameForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+	soundClick->Play();
+	if (MessageBox::Show("Ви дійсно хочете завершити гру і вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
+		Application::ExitThread();
+	}
+	else {
+		e->Cancel = true;
+	}
 }

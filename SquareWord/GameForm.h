@@ -76,7 +76,7 @@ namespace SquareWord
         void InitializeComponent()
         {
             this->components = (gcnew System::ComponentModel::Container());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->menuStrip = (gcnew System::Windows::Forms::MenuStrip());
             this->goBackToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
             this->rulesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -190,15 +190,15 @@ namespace SquareWord
             this->dataGridView->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
             this->dataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
             this->dataGridView->ColumnHeadersVisible = false;
-            dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-            dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Window;
-            dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Arial", 14, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Window;
+            dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Arial", 14, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
-            dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Red;
-            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-            dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-            this->dataGridView->DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Red;
+            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+            dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+            this->dataGridView->DefaultCellStyle = dataGridViewCellStyle2;
             this->dataGridView->GridColor = System::Drawing::SystemColors::AppWorkspace;
             this->dataGridView->Location = System::Drawing::Point(17, 116);
             this->dataGridView->MultiSelect = false;
@@ -230,19 +230,6 @@ namespace SquareWord
             this->groupBoxChars->TabIndex = 11;
             this->groupBoxChars->TabStop = false;
             this->groupBoxChars->Text = L"Клавіатура букв";
-            // 
-            // button4
-            // 
-            this->button4->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
-            this->button4->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(204)));
-            this->button4->ForeColor = System::Drawing::Color::Black;
-            this->button4->Location = System::Drawing::Point(109, 32);
-            this->button4->Name = L"button4";
-            this->button4->Size = System::Drawing::Size(75, 75);
-            this->button4->TabIndex = 4;
-            this->button4->UseVisualStyleBackColor = false;
-            this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
             // 
             // button1
             // 
@@ -282,6 +269,19 @@ namespace SquareWord
             this->button3->TabIndex = 4;
             this->button3->UseVisualStyleBackColor = false;
             this->button3->Click += gcnew System::EventHandler(this, &GameForm::button3_Click);
+            // 
+            // button4
+            // 
+            this->button4->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
+            this->button4->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(204)));
+            this->button4->ForeColor = System::Drawing::Color::Black;
+            this->button4->Location = System::Drawing::Point(109, 32);
+            this->button4->Name = L"button4";
+            this->button4->Size = System::Drawing::Size(75, 75);
+            this->button4->TabIndex = 4;
+            this->button4->UseVisualStyleBackColor = false;
+            this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
             // 
             // button5
             // 
@@ -374,7 +374,9 @@ namespace SquareWord
             this->Controls->Add(this->menuStrip);
             this->MainMenuStrip = this->menuStrip;
             this->Name = L"GameForm";
+            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             this->Text = L"Головоломка SquareWord";
+            this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &GameForm::GameForm_FormClosing);
             this->Load += gcnew System::EventHandler(this, &GameForm::GameForm_Load);
             this->menuStrip->ResumeLayout(false);
             this->menuStrip->PerformLayout();
@@ -414,8 +416,9 @@ namespace SquareWord
     private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e);
+    private: System::Void SquareWord::GameForm::buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e);
 
-    private: System::Void buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e);
+    private: System::Void GameForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }
