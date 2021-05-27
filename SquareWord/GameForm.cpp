@@ -100,6 +100,8 @@ void SquareWord::GameForm::ShowAllButtons()
         this->button6->Visible = true;
         this->button7->Visible = true;
     }
+
+    this->button8->Visible = true;
 }
 
 void SquareWord::GameForm::HideAllButtons()
@@ -111,6 +113,7 @@ void SquareWord::GameForm::HideAllButtons()
     this->button5->Visible = false;
     this->button6->Visible = false;
     this->button7->Visible = false;
+    this->button8->Visible = false;
 }
 
 void SquareWord::GameForm::HideButton(char ch)
@@ -203,6 +206,9 @@ void SquareWord::GameForm::ButtonSetChar(int i, int j)
         if (mode == GameMode::showConf) {
             FindConflict(ch); // finding and displaying conflicts
         }
+        else {
+            map->check(*selected_cell, ch); // find conflict chars and add to the vector
+        }
         steps++;
         labelStepsValue->Text = Convert::ToString(steps);
         CheckMap(); // check the current state of the map
@@ -248,9 +254,9 @@ void SquareWord::GameForm::CheckMap()
         if (soundInterface) { soundWin->Play(); }
         timer->Enabled = false; // stop timer
         MessageBox::Show("Вітаємо !!!\n" +
-            "Ви вирішили цю головоломку за " +
-            steps + " кроків і загальний час гри: " +
-            stopwatch->get_time(),
+            "Ви вирішили цю головоломку за:\n" +
+            "К-сть кроків: " + steps +
+            "\nЗагальний час гри: " + stopwatch->get_time(),
             "Перемога");
         StartForm^ form = gcnew StartForm();
         form->Show(); // open start form
@@ -376,6 +382,29 @@ System::Void SquareWord::GameForm::button6_Click(System::Object^ sender, System:
 System::Void SquareWord::GameForm::button7_Click(System::Object^ sender, System::EventArgs^ e)
 {
     ButtonSetChar(0, 6);
+}
+
+System::Void SquareWord::GameForm::button8_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    if (!timer->Enabled) { timer->Enabled = true; }
+
+    if (map->isConst(*selected_cell)) { // if the value cannot be changed
+        if (soundInterface) { soundIncorrect->Play(); }
+        labelMessage->Text = "Не можна змінювати стартові букви!";
+        labelMessage->Visible = true; // make message visible
+    }
+    else {
+        if (soundInterface) { soundClick->Play(); }
+
+        // Make a move
+        map->set_position(*selected_cell, '\0'); // add letter to matrix
+        // add letter to grid on screen
+        dataGridView->Rows[selected_cell->x]->Cells[selected_cell->y]->Value = CharToSysString('\0');
+        dataGridView->Rows[selected_cell->x]->Cells[selected_cell->y]->Style->BackColor = Color::White;
+        map->incorrect(*selected_cell); // erase cell-coord of the correct set
+        steps++;
+        labelStepsValue->Text = Convert::ToString(steps);
+    }
 }
 
 System::Void SquareWord::GameForm::buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e)

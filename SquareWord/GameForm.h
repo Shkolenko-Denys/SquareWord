@@ -62,6 +62,7 @@ namespace SquareWord
     private: System::Windows::Forms::Button^ buttonFinishGame;
 
     private: System::Windows::Forms::Timer^ timer;
+    private: System::Windows::Forms::Button^ button8;
 
     private:
         /// <summary>
@@ -94,6 +95,7 @@ namespace SquareWord
             this->button3 = (gcnew System::Windows::Forms::Button());
             this->button5 = (gcnew System::Windows::Forms::Button());
             this->button6 = (gcnew System::Windows::Forms::Button());
+            this->button8 = (gcnew System::Windows::Forms::Button());
             this->button7 = (gcnew System::Windows::Forms::Button());
             this->labelMessage = (gcnew System::Windows::Forms::Label());
             this->buttonFinishGame = (gcnew System::Windows::Forms::Button());
@@ -223,6 +225,7 @@ namespace SquareWord
             this->groupBoxChars->Controls->Add(this->button3);
             this->groupBoxChars->Controls->Add(this->button5);
             this->groupBoxChars->Controls->Add(this->button6);
+            this->groupBoxChars->Controls->Add(this->button8);
             this->groupBoxChars->Controls->Add(this->button7);
             this->groupBoxChars->Font = (gcnew System::Drawing::Font(L"Cambria", 14, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
@@ -240,7 +243,7 @@ namespace SquareWord
             this->button4->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
             this->button4->ForeColor = System::Drawing::Color::Black;
-            this->button4->Location = System::Drawing::Point(109, 32);
+            this->button4->Location = System::Drawing::Point(28, 194);
             this->button4->Name = L"button4";
             this->button4->Size = System::Drawing::Size(75, 75);
             this->button4->TabIndex = 4;
@@ -254,7 +257,7 @@ namespace SquareWord
             this->button1->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
             this->button1->ForeColor = System::Drawing::Color::Black;
-            this->button1->Location = System::Drawing::Point(28, 32);
+            this->button1->Location = System::Drawing::Point(109, 32);
             this->button1->Name = L"button1";
             this->button1->Size = System::Drawing::Size(75, 75);
             this->button1->TabIndex = 4;
@@ -282,7 +285,7 @@ namespace SquareWord
             this->button3->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
             this->button3->ForeColor = System::Drawing::Color::Black;
-            this->button3->Location = System::Drawing::Point(28, 194);
+            this->button3->Location = System::Drawing::Point(109, 113);
             this->button3->Name = L"button3";
             this->button3->Size = System::Drawing::Size(75, 75);
             this->button3->TabIndex = 4;
@@ -296,7 +299,7 @@ namespace SquareWord
             this->button5->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
             this->button5->ForeColor = System::Drawing::Color::Black;
-            this->button5->Location = System::Drawing::Point(109, 113);
+            this->button5->Location = System::Drawing::Point(109, 194);
             this->button5->Name = L"button5";
             this->button5->Size = System::Drawing::Size(75, 75);
             this->button5->TabIndex = 4;
@@ -310,7 +313,7 @@ namespace SquareWord
             this->button6->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
             this->button6->ForeColor = System::Drawing::Color::Black;
-            this->button6->Location = System::Drawing::Point(109, 194);
+            this->button6->Location = System::Drawing::Point(28, 275);
             this->button6->Name = L"button6";
             this->button6->Size = System::Drawing::Size(75, 75);
             this->button6->TabIndex = 4;
@@ -318,13 +321,27 @@ namespace SquareWord
             this->button6->Visible = false;
             this->button6->Click += gcnew System::EventHandler(this, &GameForm::button6_Click);
             // 
+            // button8
+            // 
+            this->button8->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
+            this->button8->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(204)));
+            this->button8->ForeColor = System::Drawing::Color::Black;
+            this->button8->Location = System::Drawing::Point(28, 32);
+            this->button8->Name = L"button8";
+            this->button8->Size = System::Drawing::Size(75, 75);
+            this->button8->TabIndex = 4;
+            this->button8->UseVisualStyleBackColor = false;
+            this->button8->Visible = false;
+            this->button8->Click += gcnew System::EventHandler(this, &GameForm::button8_Click);
+            // 
             // button7
             // 
             this->button7->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
             this->button7->Font = (gcnew System::Drawing::Font(L"Arial", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(204)));
             this->button7->ForeColor = System::Drawing::Color::Black;
-            this->button7->Location = System::Drawing::Point(69, 275);
+            this->button7->Location = System::Drawing::Point(109, 275);
             this->button7->Name = L"button7";
             this->button7->Size = System::Drawing::Size(75, 75);
             this->button7->TabIndex = 4;
@@ -436,9 +453,10 @@ namespace SquareWord
     private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e);
+    private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e);
     private: System::Void SquareWord::GameForm::buttonFinishGame_Click(System::Object^ sender, System::EventArgs^ e);
 
     private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e);
     private: System::Void GameForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
-    };
+};
 }
