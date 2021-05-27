@@ -303,6 +303,7 @@ namespace SquareWord
             this->Controls->Add(this->numSize);
             this->Controls->Add(this->labelSize);
             this->Controls->Add(this->menuStrip);
+            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
             this->MainMenuStrip = this->menuStrip;
             this->Name = L"StartForm";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;

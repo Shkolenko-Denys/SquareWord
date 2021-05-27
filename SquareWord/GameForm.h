@@ -375,6 +375,7 @@ namespace SquareWord
             this->Controls->Add(this->labelMessage);
             this->Controls->Add(this->dataGridView);
             this->Controls->Add(this->menuStrip);
+            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
             this->MainMenuStrip = this->menuStrip;
             this->Name = L"GameForm";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
