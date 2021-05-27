@@ -245,6 +245,7 @@ namespace SquareWord
             this->button4->Size = System::Drawing::Size(75, 75);
             this->button4->TabIndex = 4;
             this->button4->UseVisualStyleBackColor = false;
+            this->button4->Visible = false;
             this->button4->Click += gcnew System::EventHandler(this, &GameForm::button4_Click);
             // 
             // button1
@@ -258,6 +259,7 @@ namespace SquareWord
             this->button1->Size = System::Drawing::Size(75, 75);
             this->button1->TabIndex = 4;
             this->button1->UseVisualStyleBackColor = false;
+            this->button1->Visible = false;
             this->button1->Click += gcnew System::EventHandler(this, &GameForm::button1_Click);
             // 
             // button2
@@ -271,6 +273,7 @@ namespace SquareWord
             this->button2->Size = System::Drawing::Size(75, 75);
             this->button2->TabIndex = 4;
             this->button2->UseVisualStyleBackColor = false;
+            this->button2->Visible = false;
             this->button2->Click += gcnew System::EventHandler(this, &GameForm::button2_Click);
             // 
             // button3
@@ -284,6 +287,7 @@ namespace SquareWord
             this->button3->Size = System::Drawing::Size(75, 75);
             this->button3->TabIndex = 4;
             this->button3->UseVisualStyleBackColor = false;
+            this->button3->Visible = false;
             this->button3->Click += gcnew System::EventHandler(this, &GameForm::button3_Click);
             // 
             // button5
@@ -297,6 +301,7 @@ namespace SquareWord
             this->button5->Size = System::Drawing::Size(75, 75);
             this->button5->TabIndex = 4;
             this->button5->UseVisualStyleBackColor = false;
+            this->button5->Visible = false;
             this->button5->Click += gcnew System::EventHandler(this, &GameForm::button5_Click);
             // 
             // button6
@@ -310,6 +315,7 @@ namespace SquareWord
             this->button6->Size = System::Drawing::Size(75, 75);
             this->button6->TabIndex = 4;
             this->button6->UseVisualStyleBackColor = false;
+            this->button6->Visible = false;
             this->button6->Click += gcnew System::EventHandler(this, &GameForm::button6_Click);
             // 
             // button7
@@ -323,6 +329,7 @@ namespace SquareWord
             this->button7->Size = System::Drawing::Size(75, 75);
             this->button7->TabIndex = 4;
             this->button7->UseVisualStyleBackColor = false;
+            this->button7->Visible = false;
             this->button7->Click += gcnew System::EventHandler(this, &GameForm::button7_Click);
             // 
             // labelMessage

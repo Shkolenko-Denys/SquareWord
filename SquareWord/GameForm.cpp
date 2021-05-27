@@ -66,8 +66,6 @@ void SquareWord::GameForm::InitializeButtons()
         this->button3->Text = L"Å";
         this->button4->Text = L"Ç";
         this->button5->Text = L"À";
-        this->button6->Visible = false;
-        this->button7->Visible = false;
     }
     else if (size == 6) {
         this->button1->Text = L"Ã";
@@ -76,7 +74,6 @@ void SquareWord::GameForm::InitializeButtons()
         this->button4->Text = L"Á";
         this->button5->Text = L"Ó";
         this->button6->Text = L"Ñ";
-        this->button7->Visible = false;
     }
     else if (size == 7) {
         this->button1->Text = L"Ð";
