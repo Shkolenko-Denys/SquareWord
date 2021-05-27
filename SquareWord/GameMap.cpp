@@ -103,7 +103,7 @@ void GameMap::check(const coord& crd, char ch)
 { // find conflict chars and add to the vector
 
     // clear conflicting coords of another letter
-    conflict_chars.clear();
+    conflict_ch_coord.clear();
 
     // check vertically
     for (int i = 0; i < size; ++i) {
