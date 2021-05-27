@@ -97,6 +97,7 @@ void SquareWord::GameForm::ShowAllButtons()
         this->button6->Visible = true;
     }
     if (size == 7) {
+        this->button6->Visible = true;
         this->button7->Visible = true;
     }
 }
