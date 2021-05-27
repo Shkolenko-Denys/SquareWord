@@ -39,8 +39,7 @@ GameMap::~GameMap()
 
 void GameMap::SetMap()
 {
-    if (size == 5)
-    {
+    if (size == 5) {
         map[0][0] = 'Ñ';
         map[0][1] = 'Ë';
         map[0][2] = 'Å';
@@ -51,8 +50,7 @@ void GameMap::SetMap()
         map[2][3] = 'Å';
         map[2][4] = 'Ñ';
     }
-    else if (size == 6)
-    {
+    else if (size == 6) {
         map[0][0] = 'Ã';
         map[0][1] = 'Ë';
         map[0][2] = 'Î';
@@ -68,8 +66,7 @@ void GameMap::SetMap()
         map[4][4] = 'Î';
         map[4][5] = 'Ë';
     }
-    else if (size == 7)
-    {
+    else if (size == 7) {
         map[0][0] = 'Ð';
         map[0][1] = 'È';
         map[0][2] = 'Ñ';
@@ -103,7 +100,8 @@ void GameMap::SetMap()
 }
 
 void GameMap::check(const coord& crd, char ch)
-{
+{ // find conflict chars and add to the vector
+
     // clear conflicting coords of another letter
     conflict_chars.clear();
 
@@ -153,7 +151,9 @@ void GameMap::check(const coord& crd, char ch)
 }
 
 void GameMap::check(const coord& crd)
-{
+{ /* add all symbols at the intersection to the set,
+  so that later these cells can be seen */
+
     // clear conflicting coords of another letter
     conflict_chars.clear();
 
@@ -199,7 +199,7 @@ void GameMap::set_position(const coord& crd, char ch)
     map[crd.x][crd.y] = ch;
 }
 
-bool GameMap::isConst(const coord& crd)
+bool GameMap::isConst(const coord& crd) const
 {
     return std::find(const_ch_coord.begin(), const_ch_coord.end(), crd) != const_ch_coord.end();
 }

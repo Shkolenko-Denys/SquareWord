@@ -395,8 +395,8 @@ namespace SquareWord
     public: int size;
     public: int steps;
     public: enum GameMode mode;
-    public: bool soundInterface; // sound of keys and victory at the end of the game
-    private: System::Media::SoundPlayer^ soundClick; // sound of key
+    public: bool soundInterface; // sound of keys and victory at the end of the game (flag)
+    private: System::Media::SoundPlayer^ soundClick; // sound of key (value)
     private: System::Media::SoundPlayer^ soundIncorrect;
     private: System::Media::SoundPlayer^ soundWin;
     private: GameMap* map;

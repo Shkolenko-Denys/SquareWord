@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameForm.h"
+#include "GameForm.h" // for create the form and pass starting values to it
 
 namespace SquareWord
 {
@@ -321,9 +321,15 @@ namespace SquareWord
 #pragma endregion
 
         // Game fields
-    private: bool soundInterface; // key sound (flag)
+    private: bool soundInterface; /* if it is true, then
+        the sound of the keys and the sound of victory at the end of the game
+        are turned on, else these sounds are turned off
+        and background music is played */
     private: System::Media::SoundPlayer^ soundClick; // key sound (value)
     private: System::Media::SoundPlayer^ backgroundMusic;
+
+           // Game methods
+    private: void TurnOnMelody(System::String^ melodyName);
 
            // Game events
     private: System::Void StartForm_Load(System::Object^ sender, System::EventArgs^ e);

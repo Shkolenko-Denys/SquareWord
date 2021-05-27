@@ -11,6 +11,5 @@ private:
 public:
     Stopwatch();
     void clock(); // + 1 sec
-    System::String^ get_time() const;
+    System::String^ get_time() const; // return time in the format "00:00:00"
 };
-

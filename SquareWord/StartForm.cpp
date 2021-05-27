@@ -4,7 +4,8 @@ using namespace System;
 using namespace System::Windows::Forms;
 
 [STAThreadAttribute]
-void main(array<String^>^ args) {
+int main(array<System::String^>^ args) {
+    // Enabling Windows visual effects before any controls are created
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
 
@@ -12,8 +13,16 @@ void main(array<String^>^ args) {
     Application::Run(% form);
 }
 
+void SquareWord::StartForm::TurnOnMelody(System::String^ melodyName)
+{ // mutes interface sound and turns on background music
+    if (soundInterface) { soundClick->Play(); }
+    backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\" + melodyName + ".wav");
+    soundInterface = false; // turn off key sound
+    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
+}
+
 System::Void SquareWord::StartForm::StartForm_Load(System::Object^ sender, System::EventArgs^ e)
-{
+{ // Form loading actions
     soundInterface = false;
     radioButtonNone->Checked = true; // by default the user plays without help
 
@@ -54,34 +63,22 @@ System::Void SquareWord::StartForm::SoundToolStripMenuItem_Click(System::Object^
 
 System::Void SquareWord::StartForm::melody1ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { soundClick->Play(); }
-    backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody1.wav");
-    soundInterface = false; // turn off key sound
-    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
+    TurnOnMelody("melody1");
 }
 
 System::Void SquareWord::StartForm::melody2ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { soundClick->Play(); }
-    backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody2.wav");
-    soundInterface = false; // turn off key sound
-    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
+    TurnOnMelody("melody2");
 }
 
 System::Void SquareWord::StartForm::melody3ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { soundClick->Play(); }
-    backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody3.wav");
-    soundInterface = false; // turn off key sound
-    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
+    TurnOnMelody("melody3");
 }
 
 System::Void SquareWord::StartForm::melody4ToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
-    if (soundInterface) { soundClick->Play(); }
-    backgroundMusic = gcnew System::Media::SoundPlayer("..\\Resources\\melody4.wav");
-    soundInterface = false; // turn off key sound
-    backgroundWorkerMusic->RunWorkerAsync(1); // turn on background music
+    TurnOnMelody("melody4");
 }
 
 System::Void SquareWord::StartForm::nomelodyToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -138,7 +135,8 @@ System::Void SquareWord::StartForm::buttonStartGame_Click(System::Object^ sender
 System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender, System::EventArgs^ e)
 {
     if (soundInterface) { soundClick->Play(); }
-    if (MessageBox::Show("Ви дійсно хочете вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
+    if (MessageBox::Show("Ви дійсно хочете вийти з програми?", "Увага!",
+        MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
         Application::ExitThread();
     }
 }
@@ -146,7 +144,8 @@ System::Void SquareWord::StartForm::buttonExitGame_Click(System::Object^ sender,
 System::Void SquareWord::StartForm::StartForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
 {
     if (soundInterface) { soundClick->Play(); }
-    if (MessageBox::Show("Ви дійсно хочете вийти з програми?", "Увага!", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
+    if (MessageBox::Show("Ви дійсно хочете вийти з програми?", "Увага!",
+        MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes) {
         Application::ExitThread();
     }
     else {
