@@ -18,8 +18,6 @@ bool coord::operator< (const coord& obj) const
 
 GameMap::GameMap(int size)
 {
-    this->size = size;
-
     // create matrix
     this->size = size;
     map = new char* [size]; // create rows
